@@ -541,6 +541,12 @@ namespace UHFReader288MP
 
         private void Inventory()
         {
+            if (!Connect232())
+            {
+                toStopThread = true;
+            }
+
+            fIsInventoryScan = true;
             while (!toStopThread)
             {
                 Flash_G2();
@@ -560,6 +566,7 @@ namespace UHFReader288MP
                     mReadOutput.IsRuning = false;
                     mReadOutput.SetClickButtonEnable(true);
                     mReadOutput.SetButtonText("开始出库");
+                    RWDev.CloseComPort();
                 }
                 fIsInventoryScan = false;
             });
@@ -814,19 +821,19 @@ namespace UHFReader288MP
 
         }
 
-        private void Connect232()
+        private bool Connect232()
         {
-            int portNum = 0;
+            int portNum = 3;
             int FrmPortIndex = 0;
             string strException = string.Empty;
-            fBaud = 6;
+            fBaud = 5;
             fComAdr = 0xFF; //广播地址打开设备
-            fCmdRet = RWDev.AutoOpenComPort(ref portNum, ref fComAdr, fBaud, ref FrmPortIndex);
+            fCmdRet = RWDev.OpenComPort(portNum, ref fComAdr, fBaud, ref FrmPortIndex);
             if (fCmdRet != 0)
             {
                 string strLog = "连接读写器失败，失败原因： " + GetReturnCodeDesc(fCmdRet);
                 WriteLog(mLogView.RtbLog, strLog, 1);
-                return;
+                return false;
             }
             else
             {
@@ -837,6 +844,8 @@ namespace UHFReader288MP
 
             if (FrmPortIndex > 0)
                 RWDev.InitRFIDCallBack(elegateRFIDCallBack, true, FrmPortIndex);
+
+            return true;
         }
 
     }

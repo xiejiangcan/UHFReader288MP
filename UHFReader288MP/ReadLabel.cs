@@ -39,7 +39,9 @@ namespace UHFReader288MP
         public const int WM_MIXTAG = USER + 105;
         public const int WM_SHOWNUM = USER + 106;
         public const int WM_FASTID = USER + 107;
-        
+        public const int WM_START = USER + 108;
+        public const int WM_STOP = USER + 109;
+
         private bool isInput;
         
         public ReadLabel(bool isInput)
@@ -176,7 +178,7 @@ namespace UHFReader288MP
                     {
                         para = "Output Stop";
                     }
-                    SendMessage(ptrWnd, WM_SENDBUFF, IntPtr.Zero, para);
+                    SendMessage(ptrWnd, WM_STOP, IntPtr.Zero, para);
                 }
                 ptrWnd = IntPtr.Zero;
             }
@@ -199,7 +201,7 @@ namespace UHFReader288MP
                     {
                         para = "Output Start";
                     }
-                    SendMessage(ptrWnd, WM_SENDBUFF, IntPtr.Zero, para);
+                    SendMessage(ptrWnd, WM_START, IntPtr.Zero, para);
                 }
                 ptrWnd = IntPtr.Zero;
             }
