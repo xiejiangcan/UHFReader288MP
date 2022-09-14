@@ -204,5 +204,10 @@ namespace UHFReader288MP
                 ptrWnd = IntPtr.Zero;
             }
         }
+
+        public void SetFixedEnable(bool enable)
+        {
+
+        }
     }
 }

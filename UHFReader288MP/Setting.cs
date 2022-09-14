@@ -129,6 +129,7 @@ namespace UHFReader288MP
             {
                 sqlAddr = value;
                 this.TB_SqlAddr.Text = sqlAddr;
+                SqlOperation.Instance.Addr = sqlAddr;
             }
         }
 
@@ -141,6 +142,7 @@ namespace UHFReader288MP
             {
                 sqlPort = value;
                 this.TB_SqlPort.Text = sqlPort;
+                SqlOperation.Instance.Port = int.Parse(sqlPort);
             }
         }
 
@@ -153,6 +155,7 @@ namespace UHFReader288MP
             {
                 sqlAccount = value;
                 this.TB_SqlAccount.Text = sqlAccount;
+                SqlOperation.Instance.Account = sqlAccount;
             }
         }
 
@@ -165,6 +168,7 @@ namespace UHFReader288MP
             {
                 sqlPwd = value;
                 this.TB_SqlPwd.Text = sqlPwd;
+                SqlOperation.Instance.PassWd = sqlPwd;
             }
         }
 
