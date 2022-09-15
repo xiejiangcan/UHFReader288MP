@@ -49,6 +49,7 @@ namespace UHFReader288MP
         ReadLabel mReadOutput;
         LogView mLogView;
         private int ecpCounter;
+        private int flagRecord = 0; // 0:默认值， 1：Input； 2：OutPut
 
         private byte fComAdr = 0xff; //当前操作的ComAdr
         private int ferrorcode;
@@ -68,10 +69,10 @@ namespace UHFReader288MP
         private int frmcomportindex;
         private bool SeriaATflag = false;
         private byte Target = 0;
-        private byte InAnt = 0;
-        private byte Scantime = 0;
-        private byte FastFlag = 0;
-        private byte Qvalue = 0;
+        private byte InAnt = 128;
+        private byte Scantime = 20;
+        private byte FastFlag = 1;
+        private byte Qvalue = 4;
         private byte Session = 0;
         private int total_turns = 0;//轮数
         private int total_tagnum = 0;//标签数量
@@ -508,10 +509,12 @@ namespace UHFReader288MP
                 string tagInfo = Marshal.PtrToStringAnsi(m.LParam);
                 if (tagInfo.Contains("Input"))
                 {
+                    flagRecord = 1;
                     this.mReadOutput.SetClickButtonEnable(false);
                 }
                 else
                 {
+                    flagRecord = 2;
                     this.mReadInput.SetClickButtonEnable(false);
                 }
                 toStopThread = false;
@@ -523,6 +526,7 @@ namespace UHFReader288MP
             else if (m.Msg == WM_STOP)
             {
                 string tagInfo = Marshal.PtrToStringAnsi(m.LParam);
+                flagRecord = 0;
                 if (tagInfo.Contains("Input"))
                 {
                     this.mReadInput.SetClickButtonEnable(false);
@@ -574,6 +578,17 @@ namespace UHFReader288MP
 
         private void Flash_G2()
         {
+            switch (flagRecord)
+            {
+                case 1:
+                    InAnt = mReadInput.GetCurAntCode();
+                    break;
+                case 2:
+                    InAnt = mReadOutput.GetCurAntCode();
+                    break;
+                default:
+                    return;
+            }
             byte Ant = 0;
             int TagNum = 0;
             int Totallen = 0;
@@ -823,12 +838,12 @@ namespace UHFReader288MP
 
         private bool Connect232()
         {
-            int portNum = 3;
+            int portNum = 0;
             int FrmPortIndex = 0;
             string strException = string.Empty;
             fBaud = 5;
             fComAdr = 0xFF; //广播地址打开设备
-            fCmdRet = RWDev.OpenComPort(portNum, ref fComAdr, fBaud, ref FrmPortIndex);
+            fCmdRet = RWDev.AutoOpenComPort(ref portNum, ref fComAdr, fBaud, ref FrmPortIndex);
             if (fCmdRet != 0)
             {
                 string strLog = "连接读写器失败，失败原因： " + GetReturnCodeDesc(fCmdRet);

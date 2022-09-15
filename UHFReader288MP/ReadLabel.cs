@@ -43,11 +43,16 @@ namespace UHFReader288MP
         public const int WM_STOP = USER + 109;
 
         private bool isInput;
+        private List<CheckBox> checkBoxList = new List<CheckBox>();
         
         public ReadLabel(bool isInput)
         {
             InitializeComponent();
             InitProperty();
+            checkBoxList.Add(this.checkBox1);
+            checkBoxList.Add(this.checkBox2);
+            checkBoxList.Add(this.checkBox3);
+            checkBoxList.Add(this.checkBox4);
 
             this.isInput = isInput;
 
@@ -156,8 +161,49 @@ namespace UHFReader288MP
             }
         }
 
+        private int curIndex = 0;
+        private List<byte> antList;
+        public byte GetCurAntCode()
+        {
+            if (antList.Count == 0)
+                return 0x80;
+            curIndex = (curIndex + 1) % antList.Count;
+            return antList[curIndex];
+        }
+
         private void btnSwitch_Click(object sender, EventArgs e)
         {
+            antList = new List<byte>();
+            for (int i = 0; i < checkBoxList.Count; i++)
+            {
+                if (checkBoxList[i].Checked)
+                {
+                    switch (i)
+                    {
+                        case 0:
+                            antList.Add(0x80);
+                            break;
+                        case 1:
+                            antList.Add(0x81);
+                            break;
+                        case 2:
+                            antList.Add(0x82);
+                            break;
+                        case 3:
+                            antList.Add(0x83);
+                            break;
+                        default:
+                            antList.Add(0x80);
+                            break;
+                    }
+                }
+            }
+            if (antList.Count == 0)
+            {
+                MessageBox.Show("请选择天线通道!");
+                return;
+            }
+
             if (IsRuning)
             {
                 IsRuning = false;
