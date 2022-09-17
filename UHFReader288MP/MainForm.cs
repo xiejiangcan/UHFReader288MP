@@ -43,6 +43,12 @@ namespace UHFReader288MP
         public const int WM_FASTID = USER + 107;
         public const int WM_START = USER + 108;
         public const int WM_STOP = USER + 109;
+        public const int WM_SETPOWER = USER + 110;
+        public const int WM_SETREADERADDR = USER + 111;
+        public const int WM_SETREADERID = USER + 112;
+        public const int WM_SETWORKMODEL = USER + 113;
+        public const int WM_SETSOUNDSWITCH = USER + 114;
+        public const int WM_SETMAXTIME = USER + 115;
 
         Setting mSetting;
         ReadLabel mReadInput;
@@ -539,6 +545,74 @@ namespace UHFReader288MP
                 }
                 toStopThread = true;
             }
+            else if (m.Msg == WM_SETPOWER)
+            {
+                string tagInfo = Marshal.PtrToStringAnsi(m.LParam);
+                byte powerDbm = byte.Parse(tagInfo);
+                fCmdRet = RWDev.SetRfPower(ref fComAdr, powerDbm, frmcomportindex);
+                if (fCmdRet != 0)
+                {
+                    string strLog = "设置功率失败，原因： " + GetReturnCodeDesc(fCmdRet);
+                    WriteLog(mLogView.RtbLog, strLog, 1);
+                }
+                else
+                {
+                    string strLog = "设置功率成功 ";
+                    WriteLog(mLogView.RtbLog, strLog, 0);
+                }
+                
+            }
+            else if (m.Msg == WM_SETREADERADDR)
+            {
+                string tagInfo = Marshal.PtrToStringAnsi(m.LParam);
+                byte aNewComAdr = Convert.ToByte(tagInfo, 16);
+                fCmdRet = RWDev.SetAddress(ref fComAdr, aNewComAdr, frmcomportindex);
+                if (fCmdRet != 0)
+                {
+                    string strLog = "设置读写器地址失败，原因： " + GetReturnCodeDesc(fCmdRet);
+                    WriteLog(mLogView.RtbLog, strLog, 1);
+                }
+                else
+                {
+                    string strLog = "设置读写器地址成功 ";
+                    WriteLog(mLogView.RtbLog, strLog, 0);
+                }
+            }
+            else if (m.Msg == WM_SETREADERID)
+            {
+                string tagInfo = Marshal.PtrToStringAnsi(m.LParam);
+                byte[] SeriaNo = new byte[4];
+                fCmdRet = RWDev.GetSeriaNo(ref fComAdr, SeriaNo, frmcomportindex);
+                if (fCmdRet != 0)
+                {
+                    string strLog = "获取读写器序列号失败，原因： " + GetReturnCodeDesc(fCmdRet);
+                    WriteLog(mLogView.RtbLog, strLog, 1);
+                }
+                else
+                {
+                    string id = ByteArrayToHexString(SeriaNo);
+                    mSetting.SetReaderID(id);
+                    string strLog = "获取读写器序列号成功 ";
+                    WriteLog(mLogView.RtbLog, strLog, 0);
+                }
+            }
+            else if (m.Msg == WM_SETMAXTIME)
+            {
+                string tagInfo = Marshal.PtrToStringAnsi(m.LParam);
+                byte Scantime = 0;
+                Scantime = Convert.ToByte(tagInfo);
+                fCmdRet = RWDev.SetInventoryScanTime(ref fComAdr, Scantime, frmcomportindex);
+                if (fCmdRet != 0)
+                {
+                    string strLog = "设置询查最大响应时间失败，原因： " + GetReturnCodeDesc(fCmdRet);
+                    WriteLog(mLogView.RtbLog, strLog, 1);
+                }
+                else
+                {
+                    string strLog = "设置询查最大响应时间成功 ";
+                    WriteLog(mLogView.RtbLog, strLog, 0);
+                }
+            }
             else
                 base.DefWndProc(ref m);
         }
@@ -861,6 +935,24 @@ namespace UHFReader288MP
                 RWDev.InitRFIDCallBack(elegateRFIDCallBack, true, FrmPortIndex);
 
             return true;
+        }
+
+        public static byte[] HexStringToByteArray(string s)
+        {
+            s = s.Replace(" ", "");
+            byte[] buffer = new byte[s.Length / 2];
+            for (int i = 0; i < s.Length; i += 2)
+                buffer[i / 2] = (byte)Convert.ToByte(s.Substring(i, 2), 16);
+            return buffer;
+        }
+
+        public static string ByteArrayToHexString(byte[] data)
+        {
+            StringBuilder sb = new StringBuilder(data.Length * 3);
+            foreach (byte b in data)
+                sb.Append(Convert.ToString(b, 16).PadLeft(2, '0'));
+            return sb.ToString().ToUpper();
+
         }
 
     }

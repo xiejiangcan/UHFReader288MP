@@ -7,11 +7,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace UHFReader288MP
 {
     public partial class Setting : UserControl
     {
+        const string windowName = "UHFReader288MP";
+
+        [DllImport("User32.dll", EntryPoint = "PostMessage")]
+        private static extern int PostMessage(
+        IntPtr hWnd, // handle to destination window 
+        uint Msg, // message 
+        uint wParam, // first message parameter 
+        uint lParam // second message parameter 
+        );
+
+        [DllImport("User32.dll", EntryPoint = "SendMessage")]
+        private static extern int SendMessage(IntPtr hwnd, int wMsg, IntPtr wParam, string lParam);
+
+        [DllImport("User32.dll", EntryPoint = "FindWindow")]
+        private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        public const int USER = 0x0400;
+        public const int WM_SENDTAG = USER + 101;
+        public const int WM_SENDTAGSTAT = USER + 102;
+        public const int WM_SENDSTATU = USER + 103;
+        public const int WM_SENDBUFF = USER + 104;
+        public const int WM_MIXTAG = USER + 105;
+        public const int WM_SHOWNUM = USER + 106;
+        public const int WM_FASTID = USER + 107;
+        public const int WM_START = USER + 108;
+        public const int WM_STOP = USER + 109;
+        public const int WM_SETPOWER = USER + 110;
+        public const int WM_SETREADERADDR = USER + 111;
+        public const int WM_SETREADERID = USER + 112;
+        public const int WM_SETWORKMODEL = USER + 113;
+        public const int WM_SETSOUNDSWITCH = USER + 114;
+        public const int WM_SETMAXTIME = USER + 115;
+
         public Setting()
         {
             InitializeComponent();
@@ -30,14 +64,6 @@ namespace UHFReader288MP
             {
                 this.CB_ScanTime.Items.Add(Convert.ToString(i) + "*100ms");
             }
-
-            this.CB_WorkModel.Items.AddRange(new object[] {
-                "应答模式",
-                "实时模式",
-                "触发模式"
-            });
-
-            this.CB_WorkModel.SelectedIndex = 0;
         }
 
         void InitProperty()
@@ -172,7 +198,70 @@ namespace UHFReader288MP
             }
         }
 
+        private void Btn_Power_Click(object sender, EventArgs e)
+        {
+            IntPtr ptrWnd = IntPtr.Zero;
+            ptrWnd = FindWindow(null, windowName);
+            if (ptrWnd != IntPtr.Zero)         // 检查当前统计窗口是否打开
+            {
+                string para = this.CB_Power.Text;
+                SendMessage(ptrWnd, WM_SETPOWER, IntPtr.Zero, para);
+            }
+            ptrWnd = IntPtr.Zero;
+        }
 
+        private void Btn_ReaderAddr_Click(object sender, EventArgs e)
+        {
+            IntPtr ptrWnd = IntPtr.Zero;
+            ptrWnd = FindWindow(null, windowName);
+            if (ptrWnd != IntPtr.Zero)         // 检查当前统计窗口是否打开
+            {
+                string para = TB_ReaderAddr.Text;
+                SendMessage(ptrWnd, WM_SETREADERADDR, IntPtr.Zero, para);
+            }
+            ptrWnd = IntPtr.Zero;
+        }
 
+        public void SetReaderID(string id)
+        {
+            this.TB_ReaderID.Text = id;
+        }
+
+        private void Btn_ReaderID_Click(object sender, EventArgs e)
+        {
+            IntPtr ptrWnd = IntPtr.Zero;
+            ptrWnd = FindWindow(null, windowName);
+            if (ptrWnd != IntPtr.Zero)         // 检查当前统计窗口是否打开
+            {
+                string para = TB_ReaderID.Text;
+                TB_ReaderID.Text = "";
+                SendMessage(ptrWnd, WM_SETREADERID, IntPtr.Zero, para);
+            }
+            ptrWnd = IntPtr.Zero;
+        }
+
+        private void Btn_SoundSwith_Click(object sender, EventArgs e)
+        {
+            IntPtr ptrWnd = IntPtr.Zero;
+            ptrWnd = FindWindow(null, windowName);
+            if (ptrWnd != IntPtr.Zero)         // 检查当前统计窗口是否打开
+            {
+                string para = RB_Open.Checked ? "open" : "close";
+                SendMessage(ptrWnd, WM_SETSOUNDSWITCH, IntPtr.Zero, para);
+            }
+            ptrWnd = IntPtr.Zero;
+        }
+
+        private void Btn_ScanTime_Click(object sender, EventArgs e)
+        {
+            IntPtr ptrWnd = IntPtr.Zero;
+            ptrWnd = FindWindow(null, windowName);
+            if (ptrWnd != IntPtr.Zero)         // 检查当前统计窗口是否打开
+            {
+                string para = CB_ScanTime.SelectedIndex.ToString();
+                SendMessage(ptrWnd, WM_SETMAXTIME, IntPtr.Zero, para);
+            }
+            ptrWnd = IntPtr.Zero;
+        }
     }
 }

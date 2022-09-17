@@ -54,11 +54,6 @@
             this.Btn_ReaderID = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.CB_WorkModel = new System.Windows.Forms.ComboBox();
-            this.Btn_WorkModel = new System.Windows.Forms.Button();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.TB_ReaderAddr = new System.Windows.Forms.TextBox();
             this.Btn_ReaderAddr = new System.Windows.Forms.Button();
@@ -88,8 +83,6 @@
             this.groupBox2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel9.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel7.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -122,7 +115,7 @@
             this.groupBox5.Controls.Add(this.groupBox6);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox5.Location = new System.Drawing.Point(20, 369);
+            this.groupBox5.Location = new System.Drawing.Point(20, 330);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(570, 271);
             this.groupBox5.TabIndex = 9;
@@ -214,7 +207,7 @@
             this.groupBox4.Controls.Add(this.panel12);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox4.Location = new System.Drawing.Point(20, 311);
+            this.groupBox4.Location = new System.Drawing.Point(20, 272);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(570, 58);
             this.groupBox4.TabIndex = 8;
@@ -259,6 +252,7 @@
             this.Btn_ScanTime.TabIndex = 1;
             this.Btn_ScanTime.Text = "设置";
             this.Btn_ScanTime.UseVisualStyleBackColor = true;
+            this.Btn_ScanTime.Click += new System.EventHandler(this.Btn_ScanTime_Click);
             // 
             // groupBox3
             // 
@@ -266,7 +260,7 @@
             this.groupBox3.Controls.Add(this.Btn_SoundSwith);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox3.Location = new System.Drawing.Point(20, 239);
+            this.groupBox3.Location = new System.Drawing.Point(20, 200);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(570, 72);
             this.groupBox3.TabIndex = 7;
@@ -317,17 +311,18 @@
             this.Btn_SoundSwith.TabIndex = 2;
             this.Btn_SoundSwith.Text = "设置";
             this.Btn_SoundSwith.UseVisualStyleBackColor = true;
+            this.Btn_SoundSwith.Click += new System.EventHandler(this.Btn_SoundSwith_Click);
             // 
             // groupBox2
             // 
+            this.groupBox2.AutoSize = true;
             this.groupBox2.Controls.Add(this.panel5);
-            this.groupBox2.Controls.Add(this.panel6);
             this.groupBox2.Controls.Add(this.panel4);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox2.Location = new System.Drawing.Point(20, 102);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(570, 137);
+            this.groupBox2.Size = new System.Drawing.Size(570, 98);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "读写器设置";
@@ -337,7 +332,7 @@
             this.panel5.Controls.Add(this.TB_ReaderID);
             this.panel5.Controls.Add(this.Btn_ReaderID);
             this.panel5.Controls.Add(this.panel8);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(3, 57);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(3);
@@ -361,6 +356,7 @@
             this.Btn_ReaderID.TabIndex = 1;
             this.Btn_ReaderID.Text = "读取";
             this.Btn_ReaderID.UseVisualStyleBackColor = true;
+            this.Btn_ReaderID.Click += new System.EventHandler(this.Btn_ReaderID_Click);
             // 
             // panel8
             // 
@@ -381,57 +377,6 @@
             this.label3.Size = new System.Drawing.Size(120, 16);
             this.label3.TabIndex = 0;
             this.label3.Text = "读写器序列号：";
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.CB_WorkModel);
-            this.panel6.Controls.Add(this.Btn_WorkModel);
-            this.panel6.Controls.Add(this.panel9);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(3, 95);
-            this.panel6.Name = "panel6";
-            this.panel6.Padding = new System.Windows.Forms.Padding(3);
-            this.panel6.Size = new System.Drawing.Size(564, 39);
-            this.panel6.TabIndex = 0;
-            // 
-            // CB_WorkModel
-            // 
-            this.CB_WorkModel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.CB_WorkModel.FormattingEnabled = true;
-            this.CB_WorkModel.Location = new System.Drawing.Point(136, 12);
-            this.CB_WorkModel.Name = "CB_WorkModel";
-            this.CB_WorkModel.Size = new System.Drawing.Size(350, 24);
-            this.CB_WorkModel.TabIndex = 2;
-            // 
-            // Btn_WorkModel
-            // 
-            this.Btn_WorkModel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Btn_WorkModel.Location = new System.Drawing.Point(486, 3);
-            this.Btn_WorkModel.Name = "Btn_WorkModel";
-            this.Btn_WorkModel.Size = new System.Drawing.Size(75, 33);
-            this.Btn_WorkModel.TabIndex = 1;
-            this.Btn_WorkModel.Text = "设置";
-            this.Btn_WorkModel.UseVisualStyleBackColor = true;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.label4);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel9.Location = new System.Drawing.Point(3, 3);
-            this.panel9.Name = "panel9";
-            this.panel9.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.panel9.Size = new System.Drawing.Size(133, 33);
-            this.panel9.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(0, 5);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 16);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "工作模式：";
             // 
             // panel4
             // 
@@ -462,6 +407,7 @@
             this.Btn_ReaderAddr.TabIndex = 1;
             this.Btn_ReaderAddr.Text = "设置";
             this.Btn_ReaderAddr.UseVisualStyleBackColor = true;
+            this.Btn_ReaderAddr.Click += new System.EventHandler(this.Btn_ReaderAddr_Click);
             // 
             // panel7
             // 
@@ -588,6 +534,7 @@
             this.Btn_Power.TabIndex = 1;
             this.Btn_Power.Text = "设置";
             this.Btn_Power.UseVisualStyleBackColor = true;
+            this.Btn_Power.Click += new System.EventHandler(this.Btn_Power_Click);
             // 
             // Setting
             // 
@@ -598,6 +545,7 @@
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Size = new System.Drawing.Size(630, 728);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
@@ -618,9 +566,6 @@
             this.panel5.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel7.ResumeLayout(false);
@@ -665,11 +610,6 @@
         private System.Windows.Forms.Button Btn_ReaderID;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.ComboBox CB_WorkModel;
-        private System.Windows.Forms.Button Btn_WorkModel;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox TB_ReaderAddr;
         private System.Windows.Forms.Button Btn_ReaderAddr;
