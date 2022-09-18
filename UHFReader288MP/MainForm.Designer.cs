@@ -66,6 +66,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(57)))), ((int)(((byte)(93)))));
             this.panel1.Controls.Add(this.panel6);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.panel4);
@@ -116,8 +117,8 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.label2);
             resources.ApplyResources(this.panel4, "panel4");
+            this.panel4.Controls.Add(this.label2);
             this.panel4.Name = "panel4";
             // 
             // label2

@@ -77,6 +77,7 @@ namespace UHFReader288MP
             this.SqlPort = "3306";
             this.SqlAccount = "rfidepc";
             this.SqlPwd = "e8pNW2NZsxk5KeGD";
+            this.SqlDbName = "rfidepc";
         }
 
         private int power;
@@ -155,7 +156,7 @@ namespace UHFReader288MP
             {
                 sqlAddr = value;
                 this.TB_SqlAddr.Text = sqlAddr;
-                //SqlOperation.Instance.Addr = sqlAddr;
+                SqlOperation.Instance.Addr = sqlAddr;
             }
         }
 
@@ -168,7 +169,7 @@ namespace UHFReader288MP
             {
                 sqlPort = value;
                 this.TB_SqlPort.Text = sqlPort;
-                //SqlOperation.Instance.Port = int.Parse(sqlPort);
+                SqlOperation.Instance.Port = int.Parse(sqlPort);
             }
         }
 
@@ -181,7 +182,7 @@ namespace UHFReader288MP
             {
                 sqlAccount = value;
                 this.TB_SqlAccount.Text = sqlAccount;
-                //SqlOperation.Instance.Account = sqlAccount;
+                SqlOperation.Instance.Account = sqlAccount;
             }
         }
 
@@ -194,9 +195,23 @@ namespace UHFReader288MP
             {
                 sqlPwd = value;
                 this.TB_SqlPwd.Text = sqlPwd;
-                //SqlOperation.Instance.PassWd = sqlPwd;
+                SqlOperation.Instance.PassWd = sqlPwd;
             }
         }
+
+        private string sqlDbName;
+
+        public string SqlDbName
+        {
+            get { return sqlDbName; }
+            set
+            {
+                sqlDbName = value;
+                this.TB_SqlDbName.Text = sqlDbName;
+                SqlOperation.Instance.DbName = sqlDbName;
+            }
+        }
+
 
         private void Btn_Power_Click(object sender, EventArgs e)
         {
@@ -262,6 +277,26 @@ namespace UHFReader288MP
                 SendMessage(ptrWnd, WM_SETMAXTIME, IntPtr.Zero, para);
             }
             ptrWnd = IntPtr.Zero;
+        }
+
+        private void TB_SqlAddr_TextChanged(object sender, EventArgs e)
+        {
+            this.SqlAddr = this.TB_SqlAddr.Text;
+        }
+
+        private void TB_SqlPort_TextChanged(object sender, EventArgs e)
+        {
+            this.SqlPort = this.TB_SqlPort.Text;
+        }
+
+        private void TB_SqlAccount_TextChanged(object sender, EventArgs e)
+        {
+            this.SqlAccount = this.TB_SqlAccount.Text;
+        }
+
+        private void TB_SqlPwd_TextChanged(object sender, EventArgs e)
+        {
+            this.SqlPwd = this.TB_SqlPwd.Text;
         }
     }
 }

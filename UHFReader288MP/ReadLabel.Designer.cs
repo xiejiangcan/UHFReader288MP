@@ -41,16 +41,14 @@
             this.TB_IOTabName = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.TB_LabelTabName = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.TB_DbName = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnSwitch = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnSwitch = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -59,10 +57,9 @@
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -85,7 +82,7 @@
             this.groupBox3.Controls.Add(this.groupBox7);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox3.Location = new System.Drawing.Point(20, 383);
+            this.groupBox3.Location = new System.Drawing.Point(20, 310);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(462, 173);
             this.groupBox3.TabIndex = 3;
@@ -137,7 +134,7 @@
             this.groupBox2.Controls.Add(this.TB_HttpAddr);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox2.Location = new System.Drawing.Point(20, 324);
+            this.groupBox2.Location = new System.Drawing.Point(20, 251);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.groupBox2.Size = new System.Drawing.Size(462, 59);
@@ -157,12 +154,11 @@
             // 
             this.groupBox1.Controls.Add(this.groupBox6);
             this.groupBox1.Controls.Add(this.groupBox5);
-            this.groupBox1.Controls.Add(this.groupBox4);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox1.Location = new System.Drawing.Point(20, 99);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(462, 225);
+            this.groupBox1.Size = new System.Drawing.Size(462, 152);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "数据库";
@@ -171,10 +167,10 @@
             // 
             this.groupBox6.Controls.Add(this.TB_IOTabName);
             this.groupBox6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox6.Location = new System.Drawing.Point(3, 148);
+            this.groupBox6.Location = new System.Drawing.Point(3, 85);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(20, 3, 20, 3);
-            this.groupBox6.Size = new System.Drawing.Size(456, 73);
+            this.groupBox6.Size = new System.Drawing.Size(456, 58);
             this.groupBox6.TabIndex = 1;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "出入库数据表";
@@ -186,12 +182,13 @@
             this.TB_IOTabName.Name = "TB_IOTabName";
             this.TB_IOTabName.Size = new System.Drawing.Size(416, 26);
             this.TB_IOTabName.TabIndex = 0;
+            this.TB_IOTabName.TextChanged += new System.EventHandler(this.TB_IOTabName_TextChanged);
             // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.TB_LabelTabName);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox5.Location = new System.Drawing.Point(3, 85);
+            this.groupBox5.Location = new System.Drawing.Point(3, 22);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.groupBox5.Size = new System.Drawing.Size(456, 63);
@@ -206,48 +203,7 @@
             this.TB_LabelTabName.Name = "TB_LabelTabName";
             this.TB_LabelTabName.Size = new System.Drawing.Size(416, 26);
             this.TB_LabelTabName.TabIndex = 0;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.TB_DbName);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox4.Location = new System.Drawing.Point(3, 22);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(20, 3, 20, 3);
-            this.groupBox4.Size = new System.Drawing.Size(456, 63);
-            this.groupBox4.TabIndex = 0;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "数据库名称";
-            // 
-            // TB_DbName
-            // 
-            this.TB_DbName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TB_DbName.Location = new System.Drawing.Point(20, 22);
-            this.TB_DbName.Name = "TB_DbName";
-            this.TB_DbName.Size = new System.Drawing.Size(416, 26);
-            this.TB_DbName.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnSwitch);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(20, 695);
-            this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(20);
-            this.panel2.Size = new System.Drawing.Size(462, 101);
-            this.panel2.TabIndex = 2;
-            // 
-            // btnSwitch
-            // 
-            this.btnSwitch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSwitch.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSwitch.Location = new System.Drawing.Point(20, 20);
-            this.btnSwitch.Name = "btnSwitch";
-            this.btnSwitch.Size = new System.Drawing.Size(422, 61);
-            this.btnSwitch.TabIndex = 0;
-            this.btnSwitch.Text = "button1";
-            this.btnSwitch.UseVisualStyleBackColor = true;
-            this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
+            this.TB_LabelTabName.TextChanged += new System.EventHandler(this.TB_LabelTabName_TextChanged);
             // 
             // groupBox9
             // 
@@ -324,6 +280,28 @@
             this.checkBox4.Text = "天线4";
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btnSwitch);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(20, 695);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(20);
+            this.panel2.Size = new System.Drawing.Size(462, 101);
+            this.panel2.TabIndex = 2;
+            // 
+            // btnSwitch
+            // 
+            this.btnSwitch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSwitch.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSwitch.Location = new System.Drawing.Point(20, 20);
+            this.btnSwitch.Name = "btnSwitch";
+            this.btnSwitch.Size = new System.Drawing.Size(422, 61);
+            this.btnSwitch.TabIndex = 0;
+            this.btnSwitch.Text = "button1";
+            this.btnSwitch.UseVisualStyleBackColor = true;
+            this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
+            // 
             // ReadLabel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -345,12 +323,10 @@
             this.groupBox6.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.panel2.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -370,8 +346,6 @@
         private System.Windows.Forms.TextBox TB_IOTabName;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox TB_LabelTabName;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox TB_DbName;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnSwitch;
         private System.Windows.Forms.GroupBox groupBox9;

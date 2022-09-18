@@ -69,6 +69,8 @@
             this.CB_IsSave = new System.Windows.Forms.CheckBox();
             this.panel15 = new System.Windows.Forms.Panel();
             this.Btn_Power = new System.Windows.Forms.Button();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.TB_SqlDbName = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -91,6 +93,7 @@
             this.panel3.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel15.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -109,6 +112,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.groupBox10);
             this.groupBox5.Controls.Add(this.groupBox9);
             this.groupBox5.Controls.Add(this.groupBox8);
             this.groupBox5.Controls.Add(this.groupBox7);
@@ -117,7 +121,7 @@
             this.groupBox5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox5.Location = new System.Drawing.Point(20, 330);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(570, 271);
+            this.groupBox5.Size = new System.Drawing.Size(570, 324);
             this.groupBox5.TabIndex = 9;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "数据库设置";
@@ -141,6 +145,7 @@
             this.TB_SqlPwd.Name = "TB_SqlPwd";
             this.TB_SqlPwd.Size = new System.Drawing.Size(524, 26);
             this.TB_SqlPwd.TabIndex = 0;
+            this.TB_SqlPwd.TextChanged += new System.EventHandler(this.TB_SqlPwd_TextChanged);
             // 
             // groupBox8
             // 
@@ -161,6 +166,7 @@
             this.TB_SqlAccount.Name = "TB_SqlAccount";
             this.TB_SqlAccount.Size = new System.Drawing.Size(524, 26);
             this.TB_SqlAccount.TabIndex = 0;
+            this.TB_SqlAccount.TextChanged += new System.EventHandler(this.TB_SqlAccount_TextChanged);
             // 
             // groupBox7
             // 
@@ -181,6 +187,7 @@
             this.TB_SqlPort.Name = "TB_SqlPort";
             this.TB_SqlPort.Size = new System.Drawing.Size(524, 26);
             this.TB_SqlPort.TabIndex = 0;
+            this.TB_SqlPort.TextChanged += new System.EventHandler(this.TB_SqlPort_TextChanged);
             // 
             // groupBox6
             // 
@@ -201,6 +208,7 @@
             this.TB_SqlAddr.Name = "TB_SqlAddr";
             this.TB_SqlAddr.Size = new System.Drawing.Size(524, 26);
             this.TB_SqlAddr.TabIndex = 0;
+            this.TB_SqlAddr.TextChanged += new System.EventHandler(this.TB_SqlAddr_TextChanged);
             // 
             // groupBox4
             // 
@@ -536,6 +544,26 @@
             this.Btn_Power.UseVisualStyleBackColor = true;
             this.Btn_Power.Click += new System.EventHandler(this.Btn_Power_Click);
             // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.TB_SqlDbName);
+            this.groupBox10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox10.Location = new System.Drawing.Point(3, 263);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Padding = new System.Windows.Forms.Padding(20, 3, 20, 3);
+            this.groupBox10.Size = new System.Drawing.Size(564, 52);
+            this.groupBox10.TabIndex = 1;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "数据库名称";
+            // 
+            // TB_SqlDbName
+            // 
+            this.TB_SqlDbName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TB_SqlDbName.Location = new System.Drawing.Point(20, 22);
+            this.TB_SqlDbName.Name = "TB_SqlDbName";
+            this.TB_SqlDbName.Size = new System.Drawing.Size(524, 26);
+            this.TB_SqlDbName.TabIndex = 0;
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -578,6 +606,8 @@
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
             this.panel15.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -625,5 +655,7 @@
         private System.Windows.Forms.CheckBox CB_IsSave;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.Button Btn_Power;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.TextBox TB_SqlDbName;
     }
 }

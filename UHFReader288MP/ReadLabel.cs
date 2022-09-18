@@ -69,7 +69,6 @@ namespace UHFReader288MP
         void InitProperty()
         {
             this.IsRuning = false;
-            this.DbName = "rfidepc";
             this.LabelTableName = "ali_base_epc";
             this.IOTableName = "ali_base_epc_log";
             this.HttpAddr = "未知";
@@ -89,18 +88,6 @@ namespace UHFReader288MP
 
         public bool IsRuning { get; set; }
 
-        private string dbName;
-
-        public string DbName
-        {
-            get { return dbName; }
-            set
-            {
-                dbName = value;
-                this.TB_DbName.Text = dbName;
-            }
-        }
-
         private string labelTableName;
 
         public string LabelTableName
@@ -110,6 +97,7 @@ namespace UHFReader288MP
             {
                 labelTableName = value;
                 this.TB_LabelTabName.Text = labelTableName;
+                SqlOperation.Instance.BaseTableName = labelTableName;
             }
         }
 
@@ -122,6 +110,7 @@ namespace UHFReader288MP
             {
                 ioTableName = value;
                 this.TB_IOTabName.Text = ioTableName;
+                SqlOperation.Instance.LogTableName = ioTableName;
             }
         }
 
@@ -173,6 +162,13 @@ namespace UHFReader288MP
 
         private void btnSwitch_Click(object sender, EventArgs e)
         {
+            // 检查远程数据库服务器
+            if (!SqlOperation.Instance.ConnectSql())
+            {
+                MessageBox.Show("请检查远程数据库!");
+                return;
+            }
+
             antList = new List<byte>();
             for (int i = 0; i < checkBoxList.Count; i++)
             {
@@ -256,6 +252,16 @@ namespace UHFReader288MP
         public void SetFixedEnable(bool enable)
         {
 
+        }
+
+        private void TB_LabelTabName_TextChanged(object sender, EventArgs e)
+        {
+            this.LabelTableName = this.TB_LabelTabName.Text;
+        }
+
+        private void TB_IOTabName_TextChanged(object sender, EventArgs e)
+        {
+            this.IOTableName = this.TB_IOTabName.Text;
         }
     }
 }

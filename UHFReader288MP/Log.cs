@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Windows.Forms;
 
 namespace UHFReader288MPDemo
 {
@@ -10,7 +11,7 @@ namespace UHFReader288MPDemo
     /// </summary>
     public class Log
     {
-        public static string PATH;
+        public static string PATH = Application.StartupPath;
 
         public static bool WriteLog(string log)
         {

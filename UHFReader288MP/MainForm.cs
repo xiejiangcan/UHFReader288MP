@@ -55,7 +55,7 @@ namespace UHFReader288MP
         ReadLabel mReadOutput;
         LogView mLogView;
         private int ecpCounter;
-        private int flagRecord = 0; // 0:默认值， 1：Input； 2：OutPut
+        private int flagRecord = 0; // 0:默认值， 1：OutPut； 2：InPut
 
         private byte fComAdr = 0xff; //当前操作的ComAdr
         private int ferrorcode;
@@ -207,6 +207,16 @@ namespace UHFReader288MP
                 sEPC = sEPC.Substring(2);
                 index++;
                 string RSSI = tagInfo.Substring(index);
+
+                try
+                {
+                    SqlOperation.Instance.EpcRecordInsert(sEPC);
+                    SqlOperation.Instance.EpcLabelInsert(sEPC, flagRecord);
+                }
+                catch (Exception ex)
+                {
+                    WriteLog(mLogView.RtbLog, ex.Message, 1);
+                }
 
                 DataTable dt = dataGridView1.DataSource as DataTable;
 
@@ -515,12 +525,12 @@ namespace UHFReader288MP
                 string tagInfo = Marshal.PtrToStringAnsi(m.LParam);
                 if (tagInfo.Contains("Input"))
                 {
-                    flagRecord = 1;
+                    flagRecord = 2;
                     this.mReadOutput.SetClickButtonEnable(false);
                 }
                 else
                 {
-                    flagRecord = 2;
+                    flagRecord = 1;
                     this.mReadInput.SetClickButtonEnable(false);
                 }
                 toStopThread = false;
@@ -547,6 +557,11 @@ namespace UHFReader288MP
             }
             else if (m.Msg == WM_SETPOWER)
             {
+                if (!Connect232())
+                {
+                    toStopThread = true;
+                }
+
                 string tagInfo = Marshal.PtrToStringAnsi(m.LParam);
                 byte powerDbm = byte.Parse(tagInfo);
                 fCmdRet = RWDev.SetRfPower(ref fComAdr, powerDbm, frmcomportindex);
@@ -560,10 +575,17 @@ namespace UHFReader288MP
                     string strLog = "设置功率成功 ";
                     WriteLog(mLogView.RtbLog, strLog, 0);
                 }
-                
+
+                RWDev.CloseComPort();
+
             }
             else if (m.Msg == WM_SETREADERADDR)
             {
+                if (!Connect232())
+                {
+                    toStopThread = true;
+                }
+
                 string tagInfo = Marshal.PtrToStringAnsi(m.LParam);
                 byte aNewComAdr = Convert.ToByte(tagInfo, 16);
                 fCmdRet = RWDev.SetAddress(ref fComAdr, aNewComAdr, frmcomportindex);
@@ -577,9 +599,16 @@ namespace UHFReader288MP
                     string strLog = "设置读写器地址成功 ";
                     WriteLog(mLogView.RtbLog, strLog, 0);
                 }
+
+                RWDev.CloseComPort();
             }
             else if (m.Msg == WM_SETREADERID)
             {
+                if (!Connect232())
+                {
+                    toStopThread = true;
+                }
+
                 string tagInfo = Marshal.PtrToStringAnsi(m.LParam);
                 byte[] SeriaNo = new byte[4];
                 fCmdRet = RWDev.GetSeriaNo(ref fComAdr, SeriaNo, frmcomportindex);
@@ -595,9 +624,16 @@ namespace UHFReader288MP
                     string strLog = "获取读写器序列号成功 ";
                     WriteLog(mLogView.RtbLog, strLog, 0);
                 }
+
+                RWDev.CloseComPort();
             }
             else if (m.Msg == WM_SETMAXTIME)
             {
+                if (!Connect232())
+                {
+                    toStopThread = true;
+                }
+
                 string tagInfo = Marshal.PtrToStringAnsi(m.LParam);
                 byte Scantime = 0;
                 Scantime = Convert.ToByte(tagInfo);
@@ -612,6 +648,8 @@ namespace UHFReader288MP
                     string strLog = "设置询查最大响应时间成功 ";
                     WriteLog(mLogView.RtbLog, strLog, 0);
                 }
+
+                RWDev.CloseComPort();
             }
             else
                 base.DefWndProc(ref m);
@@ -654,10 +692,10 @@ namespace UHFReader288MP
         {
             switch (flagRecord)
             {
-                case 1:
+                case 2:
                     InAnt = mReadInput.GetCurAntCode();
                     break;
-                case 2:
+                case 1:
                     InAnt = mReadOutput.GetCurAntCode();
                     break;
                 default:
@@ -954,6 +992,5 @@ namespace UHFReader288MP
             return sb.ToString().ToUpper();
 
         }
-
     }
 }
