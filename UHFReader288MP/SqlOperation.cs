@@ -93,8 +93,8 @@ namespace UHFReader288MP
         {
             if (EpcRecordExist(epc))
             {
-                //string time = new DateTimeOffset(DateTime.UtcNow).ToString();
-                string cmd = string.Format("INSERT INTO {0} (number, create_time) VALUES (\"{1}\", now())", BaseTableName, epc);
+                long time = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+                string cmd = string.Format("INSERT INTO {0} (number, create_time) VALUES (\"{1}\", {2})", BaseTableName, epc, time);
                 string res = MySQL_Insdelupd(cmd);
                 if (!res.Contains("success"))
                 {
