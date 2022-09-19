@@ -92,6 +92,7 @@
     <Compile Include="DevControl.cs" />
     <Compile Include="DeviceClass.cs" />
     <Compile Include="ErrorHandling.cs" />
+    <Compile Include="HttpHelper.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="LogView.cs">
       <SubType>UserControl</SubType>
