@@ -60,10 +60,11 @@ namespace UHFReader288MP
         {
             result = new ResultStruct();
             string cmd = url + ConvertEPC(epc);
+            cmd = "http://smarts.zhuyy.cn/api/linen/getLinenDetail?epc_id=E2806995000050043565C00E";
             string str;
             try
             {
-                str = Get(url);
+                str = Get(cmd);
                 if (str == null)
 
                 {
@@ -72,7 +73,7 @@ namespace UHFReader288MP
                 }
                 JObject jo = (JObject)JsonConvert.DeserializeObject(str);
                 int code = int.Parse(jo["code"].ToString());
-                string message = jo["message"].ToString();
+                string message = jo["msg"].ToString();
                 if (code != 200)
                 {
                     Log.WriteError(message);
@@ -82,13 +83,13 @@ namespace UHFReader288MP
                 JObject data = (JObject)JsonConvert.DeserializeObject(jo["data"].ToString());
                 result.tag = data["tag"].ToString();
                 result.size = data["size"].ToString();
-                result.type = data["type"].ToString();
-                result.color = data["color"].ToString();
+                //result.type = data["type"].ToString();
+                //result.color = data["color"].ToString();
                 result.pic = "http://smarts.zhuyy.cn" + data["pic"].ToString();
                 result.in_money = data["in_money"].ToString();
                 result.out_money = data["out_money"].ToString();
-                result.supplier_id = data["supplier_id"].ToString();
-                result.warehouse_id = data["warehouse_id"].ToString();
+                //result.supplier_id = data["supplier_id"].ToString();
+                //result.warehouse_id = data["warehouse_id"].ToString();
                 result.type_name = data["type_name"].ToString();
                 result.color_name = data["color_name"].ToString();
                 result.supplier_name = data["supplier_name"].ToString();
@@ -215,5 +216,31 @@ namespace UHFReader288MP
 
             return retString;
         }
+
+        public static int HttpGet(string url, out string reslut)
+        {
+            reslut = "";
+            try
+            {
+                HttpWebRequest wbRequest = (HttpWebRequest)WebRequest.Create(url);
+                wbRequest.Proxy = null;
+                wbRequest.Method = "GET";
+                HttpWebResponse wbResponse = (HttpWebResponse)wbRequest.GetResponse();
+                using (Stream responseStream = wbResponse.GetResponseStream())
+                {
+                    using (StreamReader sReader = new StreamReader(responseStream))
+                    {
+                        reslut = sReader.ReadToEnd();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                reslut = e.Message;     //输出捕获到的异常，用OUT关键字输出
+                return -1;              //出现异常，函数的返回值为-1
+            }
+            return 0;
+        }
+
     }
 }

@@ -557,7 +557,7 @@ namespace UHFReader288MP
             }
             else if (m.Msg == WM_SETPOWER)
             {
-                if (!Connect232())
+                if (toStopThread == true && !Connect232())
                 {
                     toStopThread = true;
                 }
@@ -576,12 +576,13 @@ namespace UHFReader288MP
                     WriteLog(mLogView.RtbLog, strLog, 0);
                 }
 
-                RWDev.CloseComPort();
+                if (toStopThread == true)
+                    RWDev.CloseComPort();
 
             }
             else if (m.Msg == WM_SETREADERADDR)
             {
-                if (!Connect232())
+                if (toStopThread == true && !Connect232())
                 {
                     toStopThread = true;
                 }
@@ -600,11 +601,12 @@ namespace UHFReader288MP
                     WriteLog(mLogView.RtbLog, strLog, 0);
                 }
 
-                RWDev.CloseComPort();
+                if (toStopThread == true)
+                    RWDev.CloseComPort();
             }
             else if (m.Msg == WM_SETREADERID)
             {
-                if (!Connect232())
+                if (toStopThread == true && !Connect232())
                 {
                     toStopThread = true;
                 }
@@ -625,11 +627,40 @@ namespace UHFReader288MP
                     WriteLog(mLogView.RtbLog, strLog, 0);
                 }
 
-                RWDev.CloseComPort();
+                if (toStopThread == true)
+                    RWDev.CloseComPort();
+            }
+            else if (m.Msg == WM_SETSOUNDSWITCH)
+            {
+                if (toStopThread == true && !Connect232())
+                {
+                    toStopThread = true;
+                }
+
+                string tagInfo = Marshal.PtrToStringAnsi(m.LParam);
+                byte BeepEn = 0;
+                if (tagInfo.Contains("open"))
+                    BeepEn = 1;
+                else
+                    BeepEn = 0;
+                fCmdRet = RWDev.SetBeepNotification(ref fComAdr, BeepEn, frmcomportindex);
+                if (fCmdRet != 0)
+                {
+                    string strLog = "Set buzzer switch failed, the reason is: " + GetReturnCodeDesc(fCmdRet);
+                    WriteLog(mLogView.RtbLog, strLog, 1);
+                }
+                else
+                {
+                    string strLog = "Set buzzer switch succeed ";
+                    WriteLog(mLogView.RtbLog, strLog, 0);
+                }
+
+                if (toStopThread == true)
+                    RWDev.CloseComPort();
             }
             else if (m.Msg == WM_SETMAXTIME)
             {
-                if (!Connect232())
+                if (toStopThread == true && !Connect232())
                 {
                     toStopThread = true;
                 }
@@ -648,8 +679,8 @@ namespace UHFReader288MP
                     string strLog = "Set maximum instruction response time succeed ";
                     WriteLog(mLogView.RtbLog, strLog, 0);
                 }
-
-                RWDev.CloseComPort();
+                if(toStopThread == true)
+                    RWDev.CloseComPort();
             }
             else
                 base.DefWndProc(ref m);

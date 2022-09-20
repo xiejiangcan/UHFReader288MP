@@ -30,6 +30,10 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.TB_SqlRecordTable = new System.Windows.Forms.TextBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.TB_SqlLabelTable = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.TB_SqlDbName = new System.Windows.Forms.TextBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
@@ -70,12 +74,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
             this.Btn_Power = new System.Windows.Forms.Button();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.TB_SqlLabelTable = new System.Windows.Forms.TextBox();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.TB_SqlRecordTable = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -97,8 +99,6 @@
             this.panel3.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel15.SuspendLayout();
-            this.groupBox11.SuspendLayout();
-            this.groupBox12.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -132,6 +132,46 @@
             this.groupBox5.TabIndex = 9;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "MySql Setting";
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.TB_SqlRecordTable);
+            this.groupBox12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox12.Location = new System.Drawing.Point(3, 384);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Padding = new System.Windows.Forms.Padding(20, 3, 20, 3);
+            this.groupBox12.Size = new System.Drawing.Size(564, 61);
+            this.groupBox12.TabIndex = 3;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Record Table Name";
+            // 
+            // TB_SqlRecordTable
+            // 
+            this.TB_SqlRecordTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TB_SqlRecordTable.Location = new System.Drawing.Point(20, 22);
+            this.TB_SqlRecordTable.Name = "TB_SqlRecordTable";
+            this.TB_SqlRecordTable.Size = new System.Drawing.Size(524, 26);
+            this.TB_SqlRecordTable.TabIndex = 0;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.TB_SqlLabelTable);
+            this.groupBox11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox11.Location = new System.Drawing.Point(3, 322);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Padding = new System.Windows.Forms.Padding(20, 3, 20, 3);
+            this.groupBox11.Size = new System.Drawing.Size(564, 62);
+            this.groupBox11.TabIndex = 2;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Lable Table Name";
+            // 
+            // TB_SqlLabelTable
+            // 
+            this.TB_SqlLabelTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TB_SqlLabelTable.Location = new System.Drawing.Point(20, 22);
+            this.TB_SqlLabelTable.Name = "TB_SqlLabelTable";
+            this.TB_SqlLabelTable.Size = new System.Drawing.Size(524, 26);
+            this.TB_SqlLabelTable.TabIndex = 0;
             // 
             // groupBox10
             // 
@@ -558,46 +598,6 @@
             this.Btn_Power.UseVisualStyleBackColor = true;
             this.Btn_Power.Click += new System.EventHandler(this.Btn_Power_Click);
             // 
-            // groupBox11
-            // 
-            this.groupBox11.Controls.Add(this.TB_SqlLabelTable);
-            this.groupBox11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox11.Location = new System.Drawing.Point(3, 322);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Padding = new System.Windows.Forms.Padding(20, 3, 20, 3);
-            this.groupBox11.Size = new System.Drawing.Size(564, 62);
-            this.groupBox11.TabIndex = 2;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Lable Table Name";
-            // 
-            // TB_SqlLabelTable
-            // 
-            this.TB_SqlLabelTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TB_SqlLabelTable.Location = new System.Drawing.Point(20, 22);
-            this.TB_SqlLabelTable.Name = "TB_SqlLabelTable";
-            this.TB_SqlLabelTable.Size = new System.Drawing.Size(524, 26);
-            this.TB_SqlLabelTable.TabIndex = 0;
-            // 
-            // groupBox12
-            // 
-            this.groupBox12.Controls.Add(this.TB_SqlRecordTable);
-            this.groupBox12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox12.Location = new System.Drawing.Point(3, 384);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Padding = new System.Windows.Forms.Padding(20, 3, 20, 3);
-            this.groupBox12.Size = new System.Drawing.Size(564, 61);
-            this.groupBox12.TabIndex = 3;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "Record Table Name";
-            // 
-            // TB_SqlRecordTable
-            // 
-            this.TB_SqlRecordTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TB_SqlRecordTable.Location = new System.Drawing.Point(20, 22);
-            this.TB_SqlRecordTable.Name = "TB_SqlRecordTable";
-            this.TB_SqlRecordTable.Size = new System.Drawing.Size(524, 26);
-            this.TB_SqlRecordTable.TabIndex = 0;
-            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -609,6 +609,10 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.groupBox9.ResumeLayout(false);
@@ -641,10 +645,6 @@
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
             this.panel15.ResumeLayout(false);
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox11.PerformLayout();
-            this.groupBox12.ResumeLayout(false);
-            this.groupBox12.PerformLayout();
             this.ResumeLayout(false);
 
         }
