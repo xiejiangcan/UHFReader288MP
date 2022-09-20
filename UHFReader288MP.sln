@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.2017
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UHFReader288MP", "UHFReader288MP\UHFReader288MP.csproj", "{0C3AE3DA-2920-4A9F-AD5D-F0E2ECF57420}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{38F1E303-8D80-4708-A145-9104DDD32600}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{0C3AE3DA-2920-4A9F-AD5D-F0E2ECF57420}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C3AE3DA-2920-4A9F-AD5D-F0E2ECF57420}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C3AE3DA-2920-4A9F-AD5D-F0E2ECF57420}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38F1E303-8D80-4708-A145-9104DDD32600}.Debug|Any CPU.ActiveCfg = Debug
+		{38F1E303-8D80-4708-A145-9104DDD32600}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
