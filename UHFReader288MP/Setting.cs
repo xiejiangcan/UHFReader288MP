@@ -78,6 +78,8 @@ namespace UHFReader288MP
             this.SqlAccount = "rfidepc";
             this.SqlPwd = "e8pNW2NZsxk5KeGD";
             this.SqlDbName = "rfidepc";
+            this.LabelTableName = "ali_base_epc";
+            this.IOTableName = "ali_base_epc_log";
         }
 
         private int power;
@@ -212,6 +214,31 @@ namespace UHFReader288MP
             }
         }
 
+        private string labelTableName;
+
+        public string LabelTableName
+        {
+            get { return labelTableName; }
+            set
+            {
+                labelTableName = value;
+                this.TB_SqlLabelTable.Text = labelTableName;
+                SqlOperation.Instance.BaseTableName = labelTableName;
+            }
+        }
+
+        private string ioTableName;
+
+        public string IOTableName
+        {
+            get { return ioTableName; }
+            set
+            {
+                ioTableName = value;
+                this.TB_SqlRecordTable.Text = ioTableName;
+                SqlOperation.Instance.LogTableName = ioTableName;
+            }
+        }
 
         private void Btn_Power_Click(object sender, EventArgs e)
         {

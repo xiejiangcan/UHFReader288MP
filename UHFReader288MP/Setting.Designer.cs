@@ -30,6 +30,8 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.TB_SqlDbName = new System.Windows.Forms.TextBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.TB_SqlPwd = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
@@ -66,13 +68,15 @@
             this.CB_Power = new System.Windows.Forms.ComboBox();
             this.panel11 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.CB_IsSave = new System.Windows.Forms.CheckBox();
             this.panel15 = new System.Windows.Forms.Panel();
             this.Btn_Power = new System.Windows.Forms.Button();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.TB_SqlDbName = new System.Windows.Forms.TextBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.TB_SqlLabelTable = new System.Windows.Forms.TextBox();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.TB_SqlRecordTable = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -93,7 +97,8 @@
             this.panel3.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel15.SuspendLayout();
-            this.groupBox10.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox12.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -107,11 +112,13 @@
             this.panel1.Location = new System.Drawing.Point(10, 10);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(20);
-            this.panel1.Size = new System.Drawing.Size(610, 708);
+            this.panel1.Size = new System.Drawing.Size(610, 829);
             this.panel1.TabIndex = 0;
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.groupBox12);
+            this.groupBox5.Controls.Add(this.groupBox11);
             this.groupBox5.Controls.Add(this.groupBox10);
             this.groupBox5.Controls.Add(this.groupBox9);
             this.groupBox5.Controls.Add(this.groupBox8);
@@ -121,10 +128,30 @@
             this.groupBox5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox5.Location = new System.Drawing.Point(20, 330);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(570, 324);
+            this.groupBox5.Size = new System.Drawing.Size(570, 476);
             this.groupBox5.TabIndex = 9;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "数据库设置";
+            this.groupBox5.Text = "MySql Setting";
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.TB_SqlDbName);
+            this.groupBox10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox10.Location = new System.Drawing.Point(3, 263);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Padding = new System.Windows.Forms.Padding(20, 3, 20, 3);
+            this.groupBox10.Size = new System.Drawing.Size(564, 59);
+            this.groupBox10.TabIndex = 1;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Database Name";
+            // 
+            // TB_SqlDbName
+            // 
+            this.TB_SqlDbName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TB_SqlDbName.Location = new System.Drawing.Point(20, 22);
+            this.TB_SqlDbName.Name = "TB_SqlDbName";
+            this.TB_SqlDbName.Size = new System.Drawing.Size(524, 26);
+            this.TB_SqlDbName.TabIndex = 0;
             // 
             // groupBox9
             // 
@@ -136,7 +163,7 @@
             this.groupBox9.Size = new System.Drawing.Size(564, 62);
             this.groupBox9.TabIndex = 0;
             this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "数据库密码";
+            this.groupBox9.Text = "Password";
             // 
             // TB_SqlPwd
             // 
@@ -157,7 +184,7 @@
             this.groupBox8.Size = new System.Drawing.Size(564, 64);
             this.groupBox8.TabIndex = 0;
             this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "数据库账号";
+            this.groupBox8.Text = "Account";
             // 
             // TB_SqlAccount
             // 
@@ -178,7 +205,7 @@
             this.groupBox7.Size = new System.Drawing.Size(564, 57);
             this.groupBox7.TabIndex = 0;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "数据库端口号";
+            this.groupBox7.Text = "Server Port";
             // 
             // TB_SqlPort
             // 
@@ -199,7 +226,7 @@
             this.groupBox6.Size = new System.Drawing.Size(564, 58);
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "数据库地址";
+            this.groupBox6.Text = "Server Address";
             // 
             // TB_SqlAddr
             // 
@@ -220,7 +247,7 @@
             this.groupBox4.Size = new System.Drawing.Size(570, 58);
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "查询命令最大响应时间";
+            this.groupBox4.Text = "Maximum Instruction Response Time";
             // 
             // panel12
             // 
@@ -258,7 +285,7 @@
             this.Btn_ScanTime.Name = "Btn_ScanTime";
             this.Btn_ScanTime.Size = new System.Drawing.Size(75, 33);
             this.Btn_ScanTime.TabIndex = 1;
-            this.Btn_ScanTime.Text = "设置";
+            this.Btn_ScanTime.Text = "Set";
             this.Btn_ScanTime.UseVisualStyleBackColor = true;
             this.Btn_ScanTime.Click += new System.EventHandler(this.Btn_ScanTime_Click);
             // 
@@ -273,7 +300,7 @@
             this.groupBox3.Size = new System.Drawing.Size(570, 72);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "蜂鸣器";
+            this.groupBox3.Text = "Buzzer Switch";
             // 
             // panel10
             // 
@@ -292,22 +319,22 @@
             this.RB_Open.Dock = System.Windows.Forms.DockStyle.Left;
             this.RB_Open.Location = new System.Drawing.Point(40, 3);
             this.RB_Open.Name = "RB_Open";
-            this.RB_Open.Size = new System.Drawing.Size(42, 41);
+            this.RB_Open.Size = new System.Drawing.Size(58, 41);
             this.RB_Open.TabIndex = 0;
             this.RB_Open.TabStop = true;
-            this.RB_Open.Text = "开";
+            this.RB_Open.Text = "Open";
             this.RB_Open.UseVisualStyleBackColor = true;
             // 
             // RB_Close
             // 
             this.RB_Close.AutoSize = true;
             this.RB_Close.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RB_Close.Location = new System.Drawing.Point(407, 3);
+            this.RB_Close.Location = new System.Drawing.Point(383, 3);
             this.RB_Close.Name = "RB_Close";
-            this.RB_Close.Size = new System.Drawing.Size(42, 41);
+            this.RB_Close.Size = new System.Drawing.Size(66, 41);
             this.RB_Close.TabIndex = 1;
             this.RB_Close.TabStop = true;
-            this.RB_Close.Text = "关";
+            this.RB_Close.Text = "Close";
             this.RB_Close.UseVisualStyleBackColor = true;
             // 
             // Btn_SoundSwith
@@ -317,7 +344,7 @@
             this.Btn_SoundSwith.Name = "Btn_SoundSwith";
             this.Btn_SoundSwith.Size = new System.Drawing.Size(75, 47);
             this.Btn_SoundSwith.TabIndex = 2;
-            this.Btn_SoundSwith.Text = "设置";
+            this.Btn_SoundSwith.Text = "Set";
             this.Btn_SoundSwith.UseVisualStyleBackColor = true;
             this.Btn_SoundSwith.Click += new System.EventHandler(this.Btn_SoundSwith_Click);
             // 
@@ -333,7 +360,7 @@
             this.groupBox2.Size = new System.Drawing.Size(570, 98);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "读写器设置";
+            this.groupBox2.Text = "Reader Setting";
             // 
             // panel5
             // 
@@ -362,7 +389,7 @@
             this.Btn_ReaderID.Name = "Btn_ReaderID";
             this.Btn_ReaderID.Size = new System.Drawing.Size(75, 32);
             this.Btn_ReaderID.TabIndex = 1;
-            this.Btn_ReaderID.Text = "读取";
+            this.Btn_ReaderID.Text = "Set";
             this.Btn_ReaderID.UseVisualStyleBackColor = true;
             this.Btn_ReaderID.Click += new System.EventHandler(this.Btn_ReaderID_Click);
             // 
@@ -382,9 +409,9 @@
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Location = new System.Drawing.Point(0, 5);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 16);
+            this.label3.Size = new System.Drawing.Size(88, 16);
             this.label3.TabIndex = 0;
-            this.label3.Text = "读写器序列号：";
+            this.label3.Text = "Reader ID:";
             // 
             // panel4
             // 
@@ -413,7 +440,7 @@
             this.Btn_ReaderAddr.Name = "Btn_ReaderAddr";
             this.Btn_ReaderAddr.Size = new System.Drawing.Size(75, 29);
             this.Btn_ReaderAddr.TabIndex = 1;
-            this.Btn_ReaderAddr.Text = "设置";
+            this.Btn_ReaderAddr.Text = "Set";
             this.Btn_ReaderAddr.UseVisualStyleBackColor = true;
             this.Btn_ReaderAddr.Click += new System.EventHandler(this.Btn_ReaderAddr_Click);
             // 
@@ -433,9 +460,9 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Location = new System.Drawing.Point(0, 5);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 16);
+            this.label2.Size = new System.Drawing.Size(128, 16);
             this.label2.TabIndex = 0;
-            this.label2.Text = "读写器地址：";
+            this.label2.Text = "Reader Address:";
             // 
             // groupBox1
             // 
@@ -447,7 +474,7 @@
             this.groupBox1.Size = new System.Drawing.Size(570, 82);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "射频输出功率";
+            this.groupBox1.Text = "RF Power";
             // 
             // panel13
             // 
@@ -463,7 +490,6 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.CB_IsSave);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
@@ -479,7 +505,7 @@
             this.panel3.Location = new System.Drawing.Point(10, 10);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(374, 31);
+            this.panel3.Size = new System.Drawing.Size(463, 31);
             this.panel3.TabIndex = 4;
             // 
             // CB_Power
@@ -488,14 +514,14 @@
             this.CB_Power.FormattingEnabled = true;
             this.CB_Power.Location = new System.Drawing.Point(5, 5);
             this.CB_Power.Name = "CB_Power";
-            this.CB_Power.Size = new System.Drawing.Size(318, 24);
+            this.CB_Power.Size = new System.Drawing.Size(407, 24);
             this.CB_Power.TabIndex = 1;
             // 
             // panel11
             // 
             this.panel11.Controls.Add(this.label1);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel11.Location = new System.Drawing.Point(323, 5);
+            this.panel11.Location = new System.Drawing.Point(412, 5);
             this.panel11.Name = "panel11";
             this.panel11.Padding = new System.Windows.Forms.Padding(3);
             this.panel11.Size = new System.Drawing.Size(46, 21);
@@ -510,18 +536,6 @@
             this.label1.Size = new System.Drawing.Size(32, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "dBm";
-            // 
-            // CB_IsSave
-            // 
-            this.CB_IsSave.AutoSize = true;
-            this.CB_IsSave.Dock = System.Windows.Forms.DockStyle.Right;
-            this.CB_IsSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.CB_IsSave.Location = new System.Drawing.Point(384, 10);
-            this.CB_IsSave.Name = "CB_IsSave";
-            this.CB_IsSave.Size = new System.Drawing.Size(89, 31);
-            this.CB_IsSave.TabIndex = 2;
-            this.CB_IsSave.Text = "掉电保护";
-            this.CB_IsSave.UseVisualStyleBackColor = true;
             // 
             // panel15
             // 
@@ -540,29 +554,49 @@
             this.Btn_Power.Name = "Btn_Power";
             this.Btn_Power.Size = new System.Drawing.Size(69, 45);
             this.Btn_Power.TabIndex = 1;
-            this.Btn_Power.Text = "设置";
+            this.Btn_Power.Text = "Set";
             this.Btn_Power.UseVisualStyleBackColor = true;
             this.Btn_Power.Click += new System.EventHandler(this.Btn_Power_Click);
             // 
-            // groupBox10
+            // groupBox11
             // 
-            this.groupBox10.Controls.Add(this.TB_SqlDbName);
-            this.groupBox10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox10.Location = new System.Drawing.Point(3, 263);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Padding = new System.Windows.Forms.Padding(20, 3, 20, 3);
-            this.groupBox10.Size = new System.Drawing.Size(564, 52);
-            this.groupBox10.TabIndex = 1;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "数据库名称";
+            this.groupBox11.Controls.Add(this.TB_SqlLabelTable);
+            this.groupBox11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox11.Location = new System.Drawing.Point(3, 322);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Padding = new System.Windows.Forms.Padding(20, 3, 20, 3);
+            this.groupBox11.Size = new System.Drawing.Size(564, 62);
+            this.groupBox11.TabIndex = 2;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Lable Table Name";
             // 
-            // TB_SqlDbName
+            // TB_SqlLabelTable
             // 
-            this.TB_SqlDbName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TB_SqlDbName.Location = new System.Drawing.Point(20, 22);
-            this.TB_SqlDbName.Name = "TB_SqlDbName";
-            this.TB_SqlDbName.Size = new System.Drawing.Size(524, 26);
-            this.TB_SqlDbName.TabIndex = 0;
+            this.TB_SqlLabelTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TB_SqlLabelTable.Location = new System.Drawing.Point(20, 22);
+            this.TB_SqlLabelTable.Name = "TB_SqlLabelTable";
+            this.TB_SqlLabelTable.Size = new System.Drawing.Size(524, 26);
+            this.TB_SqlLabelTable.TabIndex = 0;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.TB_SqlRecordTable);
+            this.groupBox12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox12.Location = new System.Drawing.Point(3, 384);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Padding = new System.Windows.Forms.Padding(20, 3, 20, 3);
+            this.groupBox12.Size = new System.Drawing.Size(564, 61);
+            this.groupBox12.TabIndex = 3;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Record Table Name";
+            // 
+            // TB_SqlRecordTable
+            // 
+            this.TB_SqlRecordTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TB_SqlRecordTable.Location = new System.Drawing.Point(20, 22);
+            this.TB_SqlRecordTable.Name = "TB_SqlRecordTable";
+            this.TB_SqlRecordTable.Size = new System.Drawing.Size(524, 26);
+            this.TB_SqlRecordTable.TabIndex = 0;
             // 
             // Setting
             // 
@@ -571,10 +605,12 @@
             this.Controls.Add(this.panel1);
             this.Name = "Setting";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(630, 728);
+            this.Size = new System.Drawing.Size(630, 849);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.groupBox8.ResumeLayout(false);
@@ -601,13 +637,14 @@
             this.groupBox1.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
             this.panel15.ResumeLayout(false);
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -652,10 +689,13 @@
         private System.Windows.Forms.ComboBox CB_Power;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox CB_IsSave;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.Button Btn_Power;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.TextBox TB_SqlDbName;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.TextBox TB_SqlRecordTable;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.TextBox TB_SqlLabelTable;
     }
 }

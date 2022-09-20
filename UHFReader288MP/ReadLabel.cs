@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Runtime.InteropServices;
 using UHF;
+using UHFReader288MPDemo;
 
 namespace UHFReader288MP
 {
@@ -58,22 +59,34 @@ namespace UHFReader288MP
 
             if (isInput)
             {
-                this.btnSwitch.Text = "开始入库";
+                this.btnSwitch.Text = "Start Into";
             }
             else
             {
-                this.btnSwitch.Text = "开始出库";
+                this.btnSwitch.Text = "Start Out";
             }
+        }
+
+        public void SetProperty(ResultStruct res)
+        {
+            this.TagId = res.tag;
+            this.TagSize = res.size;
+            this.TagType = res.type;
+            this.TagColor = res.color;
+            this.Pic = res.pic;
+            this.InMoney = res.in_money;
+            this.OutMoney = res.out_money;
+            this.SupplierId = res.supplier_id;
+            this.WarehouseId = res.warehouse_id;
+            this.TypeName = res.type_name;
+            this.ColorName = res.color_name;
+            this.SupplierName = res.supplier_name;
+            this.WarehouseName = res.warehouse_name;
         }
 
         void InitProperty()
         {
             this.IsRuning = false;
-            this.LabelTableName = "ali_base_epc";
-            this.IOTableName = "ali_base_epc_log";
-            this.HttpAddr = "未知";
-            this.LabelWidth = 0;
-            this.LabelLength = 0;
         }
 
         public void SetClickButtonEnable(bool state)
@@ -88,67 +101,175 @@ namespace UHFReader288MP
 
         public bool IsRuning { get; set; }
 
-        private string labelTableName;
+        private string tagId;
 
-        public string LabelTableName
+        public string TagId
         {
-            get { return labelTableName; }
+            get { return tagId; }
             set
             {
-                labelTableName = value;
-                this.TB_LabelTabName.Text = labelTableName;
-                SqlOperation.Instance.BaseTableName = labelTableName;
+                tagId = value;
+                this.LB_TagValue.Text = tagId;
             }
         }
 
-        private string ioTableName;
+        private string tagSize;
 
-        public string IOTableName
+        public string TagSize
         {
-            get { return ioTableName; }
+            get { return tagSize; }
             set
             {
-                ioTableName = value;
-                this.TB_IOTabName.Text = ioTableName;
-                SqlOperation.Instance.LogTableName = ioTableName;
+                tagSize = value;
+                this.LB_SizeValue.Text = tagSize;
             }
         }
 
-        private string httpAddr;
+        private string tagType;
 
-        public string HttpAddr
+        public string TagType
         {
-            get { return httpAddr; }
+            get { return tagType; }
             set
             {
-                httpAddr = value;
-                this.TB_HttpAddr.Text = httpAddr;
+                tagType = value;
+                this.LB_TypeValue.Text = tagType;
             }
         }
 
-        private int labelWidth;
+        private string tagColor;
 
-        public int LabelWidth
+        public string TagColor
         {
-            get { return labelWidth; }
+            get { return tagColor; }
             set
             {
-                labelWidth = value;
-                this.TB_LabelWidth.Text = string.Format("{0}",labelWidth);
+                tagColor = value;
+                this.LB_ColorValue.Text = tagColor;
             }
         }
 
-        private int labelLength;
+        private string pic;
 
-        public int LabelLength
+        public string Pic
         {
-            get { return labelLength; }
+            get { return pic; }
             set
             {
-                labelLength = value;
-                this.TB_LabelLength.Text = string.Format("{0}", labelLength);
+                pic = value;
+                try
+                {
+                    System.Net.WebRequest webreq = System.Net.WebRequest.Create(pic);
+                    System.Net.WebResponse webres = webreq.GetResponse();
+                    using (System.IO.Stream stream = webres.GetResponseStream())
+                    {
+                        pictureBox.Image = Image.FromStream(stream);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.WriteError(ex.Message);
+                }
             }
         }
+
+        private string inMoney;
+
+        public string InMoney
+        {
+            get { return inMoney; }
+            set
+            {
+                inMoney = value;
+                this.LB_InMoneyValue.Text = inMoney;
+            }
+        }
+
+        private string outMoney;
+
+        public string OutMoney
+        {
+            get { return outMoney; }
+            set
+            {
+                outMoney = value;
+                this.LB_OutMoneyValue.Text = outMoney;
+            }
+        }
+
+        private string supplierId;
+
+        public string SupplierId
+        {
+            get { return supplierId; }
+            set
+            {
+                supplierId = value;
+                this.LB_SuypplierIDValue.Text = supplierId;
+            }
+        }
+
+        private string warehouseId;
+
+        public string WarehouseId
+        {
+            get { return warehouseId; }
+            set
+            {
+                warehouseId = value;
+                this.LB_WarehouseIDValue.Text = warehouseId;
+            }
+        }
+
+        private string typeName;
+
+        public string TypeName
+        {
+            get { return typeName; }
+            set
+            {
+                typeName = value;
+                this.LB_TypeNameValue.Text = typeName;
+            }
+        }
+
+        private string colorName;
+
+        public string ColorName
+        {
+            get { return colorName; }
+            set
+            {
+                colorName = value;
+                this.LB_ColorNameValue.Text = colorName;
+            }
+        }
+
+        private string supplierName;
+
+        public string SupplierName
+        {
+            get { return supplierName; }
+            set
+            {
+                supplierName = value;
+                this.LB_SupplierNameValue.Text = supplierName;
+            }
+        }
+
+        private string warehouseName;
+
+        public string WarehouseName
+        {
+            get { return warehouseName; }
+            set
+            {
+                warehouseName = value;
+                this.LB_WarehouseNameValue.Text = warehouseId;
+            }
+        }
+
+
 
         private int curIndex = 0;
         private List<byte> antList;
@@ -165,7 +286,7 @@ namespace UHFReader288MP
             // 检查远程数据库服务器
             if (!SqlOperation.Instance.ConnectSql())
             {
-                MessageBox.Show("请检查远程数据库!");
+                MessageBox.Show("Please check out the MySql Server!");
                 return;
             }
 
@@ -196,7 +317,7 @@ namespace UHFReader288MP
             }
             if (antList.Count == 0)
             {
-                MessageBox.Show("请选择天线通道!");
+                MessageBox.Show("Please Select the antenna!");
                 return;
             }
 
@@ -205,7 +326,7 @@ namespace UHFReader288MP
                 IsRuning = false;
                 btnSwitch.Enabled = false;
                 btnSwitch.BackColor = Color.Transparent;
-                btnSwitch.Text = "停止中";
+                btnSwitch.Text = "Stopping";
 
                 IntPtr ptrWnd = IntPtr.Zero;
                 ptrWnd = FindWindow(null, windowName);
@@ -228,7 +349,7 @@ namespace UHFReader288MP
             {
                 IsRuning = true;
                 btnSwitch.BackColor = Color.Indigo;
-                btnSwitch.Text = "停止";
+                btnSwitch.Text = "Stop";
 
                 IntPtr ptrWnd = IntPtr.Zero;
                 ptrWnd = FindWindow(null, windowName);
@@ -253,15 +374,6 @@ namespace UHFReader288MP
         {
 
         }
-
-        private void TB_LabelTabName_TextChanged(object sender, EventArgs e)
-        {
-            this.LabelTableName = this.TB_LabelTabName.Text;
-        }
-
-        private void TB_IOTabName_TextChanged(object sender, EventArgs e)
-        {
-            this.IOTableName = this.TB_IOTabName.Text;
-        }
+        
     }
 }

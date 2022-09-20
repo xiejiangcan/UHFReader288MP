@@ -155,13 +155,13 @@ namespace UHFReader288MP
                 fCmdRet = RWDev.CloseSpecComPort(frmcomportindex);
             if (fCmdRet != 0)
             {
-                string strLog = "串口关闭不成功： " + GetReturnCodeDesc(fCmdRet);
+                string strLog = "Serialport Stop Failed: " + GetReturnCodeDesc(fCmdRet);
                 WriteLog(mLogView.RtbLog, strLog, 1);
                 return;
             }
             else
             {
-                string strLog = "串口关闭成功";
+                string strLog = "Serialport Stop Succeed!";
                 WriteLog(mLogView.RtbLog, strLog, 0);
             }
         }
@@ -269,15 +269,15 @@ namespace UHFReader288MP
 
                 if (flagset)
                 {
-                    dataGridView1.Columns["Column1"].HeaderText = "序号";
+                    dataGridView1.Columns["Column1"].HeaderText = "Index";
                     dataGridView1.Columns["Column1"].Width = 80;
                     dataGridView1.Columns["Column2"].HeaderText = "EPC";
                     dataGridView1.Columns["Column2"].Width = 300;
-                    dataGridView1.Columns["Column3"].HeaderText = "次数";
+                    dataGridView1.Columns["Column3"].HeaderText = "Times";
                     dataGridView1.Columns["Column3"].Width = 80;
                     dataGridView1.Columns["Column4"].HeaderText = "RSSI";
                     dataGridView1.Columns["Column4"].Width = 80;
-                    dataGridView1.Columns["Column5"].HeaderText = "天线(4-1)";
+                    dataGridView1.Columns["Column5"].HeaderText = "Ante(4-1)";
                     dataGridView1.Columns["Column5"].Width = 100;
                 }
             }
@@ -350,22 +350,22 @@ namespace UHFReader288MP
 
                 if (flagset)
                 {
-                    dataGridView1.Columns["Column1"].HeaderText = "序号";
+                    dataGridView1.Columns["Column1"].HeaderText = "Index";
                     dataGridView1.Columns["Column1"].Width = 60;
 
                     dataGridView1.Columns["Column2"].HeaderText = "EPC";
                     dataGridView1.Columns["Column2"].Width = 280;
 
-                    dataGridView1.Columns["Column3"].HeaderText = "数据";
+                    dataGridView1.Columns["Column3"].HeaderText = "Data";
                     dataGridView1.Columns["Column3"].Width = 150;
 
-                    dataGridView1.Columns["Column4"].HeaderText = "次数";
+                    dataGridView1.Columns["Column4"].HeaderText = "Times";
                     dataGridView1.Columns["Column4"].Width = 60;
 
                     dataGridView1.Columns["Column5"].HeaderText = "RSSI";
                     dataGridView1.Columns["Column5"].Width = 60;
 
-                    dataGridView1.Columns["Column6"].HeaderText = "天线(4-1)";
+                    dataGridView1.Columns["Column6"].HeaderText = "Ante(4-1)";
                     dataGridView1.Columns["Column6"].Width = 60;
                 }
             }
@@ -460,22 +460,22 @@ namespace UHFReader288MP
 
                 if (flagset)
                 {
-                    dataGridView1.Columns["Column1"].HeaderText = "序号";
+                    dataGridView1.Columns["Column1"].HeaderText = "Index";
                     dataGridView1.Columns["Column1"].Width = 60;
 
                     dataGridView1.Columns["Column2"].HeaderText = "EPC";
                     dataGridView1.Columns["Column2"].Width = 280;
 
-                    dataGridView1.Columns["Column3"].HeaderText = "     TID";
+                    dataGridView1.Columns["Column3"].HeaderText = "TID";
                     dataGridView1.Columns["Column3"].Width = 150;
 
-                    dataGridView1.Columns["Column4"].HeaderText = "次数";
+                    dataGridView1.Columns["Column4"].HeaderText = "Times";
                     dataGridView1.Columns["Column4"].Width = 60;
 
                     dataGridView1.Columns["Column5"].HeaderText = "RSSI";
                     dataGridView1.Columns["Column5"].Width = 60;
 
-                    dataGridView1.Columns["Column6"].HeaderText = "天线(4-1)";
+                    dataGridView1.Columns["Column6"].HeaderText = "Ante(4-1)";
                     dataGridView1.Columns["Column6"].Width = 60;
                 }
             }
@@ -495,7 +495,7 @@ namespace UHFReader288MP
             {
                 string Info = Marshal.PtrToStringAnsi(m.LParam);
                 fCmdRet = Convert.ToInt32(Info);
-                string strLog = "询查标签： " + GetReturnCodeDesc(fCmdRet);
+                string strLog = "Check Label: " + GetReturnCodeDesc(fCmdRet);
                 WriteLog(mLogView.RtbLog, strLog, 1);
             }
             else if (m.Msg == WM_SENDBUFF)
@@ -518,7 +518,7 @@ namespace UHFReader288MP
                 str = str.Substring(index);
                 string total_tagnum = str;
 
-                WriteLog(mLogView.RtbLog, "询查缓存:执行成功", 1);
+                WriteLog(mLogView.RtbLog, "Check Buff: Succeed ", 1);
             }
             else if (m.Msg == WM_START)
             {
@@ -546,12 +546,12 @@ namespace UHFReader288MP
                 if (tagInfo.Contains("Input"))
                 {
                     this.mReadInput.SetClickButtonEnable(false);
-                    this.mReadInput.SetButtonText("关闭中");
+                    this.mReadInput.SetButtonText("Stopping");
                 }
                 else
                 {
                     this.mReadOutput.SetClickButtonEnable(false);
-                    this.mReadOutput.SetButtonText("关闭中");
+                    this.mReadOutput.SetButtonText("Stopping");
                 }
                 toStopThread = true;
             }
@@ -567,12 +567,12 @@ namespace UHFReader288MP
                 fCmdRet = RWDev.SetRfPower(ref fComAdr, powerDbm, frmcomportindex);
                 if (fCmdRet != 0)
                 {
-                    string strLog = "设置功率失败，原因： " + GetReturnCodeDesc(fCmdRet);
+                    string strLog = "Set RF power failed, the reason is: " + GetReturnCodeDesc(fCmdRet);
                     WriteLog(mLogView.RtbLog, strLog, 1);
                 }
                 else
                 {
-                    string strLog = "设置功率成功 ";
+                    string strLog = "Set RF power succeed ";
                     WriteLog(mLogView.RtbLog, strLog, 0);
                 }
 
@@ -591,12 +591,12 @@ namespace UHFReader288MP
                 fCmdRet = RWDev.SetAddress(ref fComAdr, aNewComAdr, frmcomportindex);
                 if (fCmdRet != 0)
                 {
-                    string strLog = "设置读写器地址失败，原因： " + GetReturnCodeDesc(fCmdRet);
+                    string strLog = "Set reader address failed, the reason is: " + GetReturnCodeDesc(fCmdRet);
                     WriteLog(mLogView.RtbLog, strLog, 1);
                 }
                 else
                 {
-                    string strLog = "设置读写器地址成功 ";
+                    string strLog = "Set reader address succeed ";
                     WriteLog(mLogView.RtbLog, strLog, 0);
                 }
 
@@ -614,14 +614,14 @@ namespace UHFReader288MP
                 fCmdRet = RWDev.GetSeriaNo(ref fComAdr, SeriaNo, frmcomportindex);
                 if (fCmdRet != 0)
                 {
-                    string strLog = "获取读写器序列号失败，原因： " + GetReturnCodeDesc(fCmdRet);
+                    string strLog = "Get reader ID failed, the reason is: " + GetReturnCodeDesc(fCmdRet);
                     WriteLog(mLogView.RtbLog, strLog, 1);
                 }
                 else
                 {
                     string id = ByteArrayToHexString(SeriaNo);
                     mSetting.SetReaderID(id);
-                    string strLog = "获取读写器序列号成功 ";
+                    string strLog = "Get reader ID succeed ";
                     WriteLog(mLogView.RtbLog, strLog, 0);
                 }
 
@@ -640,12 +640,12 @@ namespace UHFReader288MP
                 fCmdRet = RWDev.SetInventoryScanTime(ref fComAdr, Scantime, frmcomportindex);
                 if (fCmdRet != 0)
                 {
-                    string strLog = "设置询查最大响应时间失败，原因： " + GetReturnCodeDesc(fCmdRet);
+                    string strLog = "Set maximum instruction response time failed，the reason is: " + GetReturnCodeDesc(fCmdRet);
                     WriteLog(mLogView.RtbLog, strLog, 1);
                 }
                 else
                 {
-                    string strLog = "设置询查最大响应时间成功 ";
+                    string strLog = "Set maximum instruction response time succeed ";
                     WriteLog(mLogView.RtbLog, strLog, 0);
                 }
 
@@ -678,10 +678,10 @@ namespace UHFReader288MP
                     fIsInventoryScan = false;
                     mReadInput.IsRuning = false;
                     mReadInput.SetClickButtonEnable(true);
-                    mReadInput.SetButtonText("开始入库");
+                    mReadInput.SetButtonText("Start Into");
                     mReadOutput.IsRuning = false;
                     mReadOutput.SetClickButtonEnable(true);
-                    mReadOutput.SetButtonText("开始出库");
+                    mReadOutput.SetButtonText("Start Out");
                     RWDev.CloseComPort();
                 }
                 fIsInventoryScan = false;
@@ -740,7 +740,7 @@ namespace UHFReader288MP
                 {
                     int tagrate = (CardNum * 1000) / cmdTime;//速度等于张数/时间
                     IntPtr ptrWnd = IntPtr.Zero;
-                    ptrWnd = FindWindow(null, "UHFReader288MP Demo V2.2");
+                    ptrWnd = FindWindow(null, windowName);
                     if (ptrWnd != IntPtr.Zero)         // 检查当前统计窗口是否打开
                     {
                         string para = tagrate.ToString() + "," + total_tagnum.ToString() + "," + cmdTime.ToString();
@@ -940,12 +940,13 @@ namespace UHFReader288MP
 
         private void btnRecount_Click(object sender, EventArgs e)
         {
-
+            this.EpcCounter = 0;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-
+            DataTable dt = dataGridView1.DataSource as DataTable;
+            dt.Clear();
         }
 
         private bool Connect232()
@@ -958,14 +959,14 @@ namespace UHFReader288MP
             fCmdRet = RWDev.AutoOpenComPort(ref portNum, ref fComAdr, fBaud, ref FrmPortIndex);
             if (fCmdRet != 0)
             {
-                string strLog = "连接读写器失败，失败原因： " + GetReturnCodeDesc(fCmdRet);
+                string strLog = "Connect reader failed, the reason is:  " + GetReturnCodeDesc(fCmdRet);
                 WriteLog(mLogView.RtbLog, strLog, 1);
                 return false;
             }
             else
             {
                 frmcomportindex = FrmPortIndex;
-                string strLog = "连接读写器 " + portNum.ToString() + "@" + fBaud.ToString();
+                string strLog = "Connect the reader " + portNum.ToString() + "@" + fBaud.ToString();
                 WriteLog(mLogView.RtbLog, strLog, 0);
             }
 
@@ -991,6 +992,37 @@ namespace UHFReader288MP
                 sb.Append(Convert.ToString(b, 16).PadLeft(2, '0'));
             return sb.ToString().ToUpper();
 
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string epcId = "";
+            ResultStruct result;
+            if (e.RowIndex > -1)
+            {
+                epcId = this.dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                try
+                {
+                    if (HttpHelper.GetLabelProperty(epcId, out result))
+                    {
+                        switch (flagRecord)
+                        {
+                            case 2:
+                                this.mReadInput.SetProperty(result);
+                                break;
+                            case 1:
+                                this.mReadOutput.SetProperty(result);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
         }
     }
 }

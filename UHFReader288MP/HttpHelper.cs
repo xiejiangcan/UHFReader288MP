@@ -1,28 +1,32 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using UHFReader288MPDemo;
 
 namespace UHFReader288MP
 {
     public struct ResultStruct
     {
-        string tag;
-        string size;
-        int type;
-        int color;
-        string pic;
-        string in_money;
-        string out_money;
-        int supplier_id;
-        int warehouse_id;
-        string type_name;
-        string color_name;
-        string supplier_name;
-        string warehouse_name;
+        public string tag;
+        public string size;
+        public string type;
+        public string color;
+        public string pic;
+        public string in_money;
+        public string out_money;
+        public string supplier_id;
+        public string warehouse_id;
+        public string type_name;
+        public string color_name;
+        public string supplier_name;
+        public string warehouse_name;
     }
     /// <summary>
     /// url: /api/linen/getLinenDetail
@@ -50,67 +54,166 @@ namespace UHFReader288MP
     /// </summary>
     public class HttpHelper
     {
-        public static string url = "/api/linen/getLinenDetail";
+        public static string url = "http://smarts.zhuyy.cn/api/linen/getLinenDetail?epc_id=";
 
         public static bool GetLabelProperty(string epc, out ResultStruct result)
         {
             result = new ResultStruct();
+            string cmd = url + ConvertEPC(epc);
             string str;
-            string cmd = "{\"epc_id\"=\"" + epc + "\"}";
-            int res = HttpGet(url, cmd, out str);
-
-            if (res != 0)
+            try
             {
+                str = Get(url);
+                if (str == null)
+
+                {
+                    Console.WriteLine("StartCollection not get responce");
+                    return false;
+                }
+                JObject jo = (JObject)JsonConvert.DeserializeObject(str);
+                int code = int.Parse(jo["code"].ToString());
+                string message = jo["message"].ToString();
+                if (code != 200)
+                {
+                    Log.WriteError(message);
+                    return false;
+                }
+
+                JObject data = (JObject)JsonConvert.DeserializeObject(jo["data"].ToString());
+                result.tag = data["tag"].ToString();
+                result.size = data["size"].ToString();
+                result.type = data["type"].ToString();
+                result.color = data["color"].ToString();
+                result.pic = "http://smarts.zhuyy.cn" + data["pic"].ToString();
+                result.in_money = data["in_money"].ToString();
+                result.out_money = data["out_money"].ToString();
+                result.supplier_id = data["supplier_id"].ToString();
+                result.warehouse_id = data["warehouse_id"].ToString();
+                result.type_name = data["type_name"].ToString();
+                result.color_name = data["color_name"].ToString();
+                result.supplier_name = data["supplier_name"].ToString();
+                result.warehouse_name = data["warehouse_name"].ToString();
+            }
+            catch(Exception ex)
+            {
+                Log.WriteError(ex.Message);
                 return false;
             }
 
             return true;
         }
-        
-        public static int HttpGet(string url, string sendData, out string reslut)
+
+        public static string ConvertEPC(string epc)
         {
-            reslut = "";
-            try
+            string res = "";
+            
+            Dictionary<char, char> pwd_map = new Dictionary<char, char>();
+            pwd_map.Add('0', '3');
+            pwd_map.Add('1', '9');
+            pwd_map.Add('2', '0');
+            pwd_map.Add('3', '5');
+            pwd_map.Add('4', '1');
+            pwd_map.Add('5', '7');
+            pwd_map.Add('6', '2');
+            pwd_map.Add('7', '4');
+            pwd_map.Add('8', '6');
+            pwd_map.Add('9', '8');
+
+            pwd_map.Add('A', 'W');
+            pwd_map.Add('B', 'N');
+            pwd_map.Add('C', 'L');
+            pwd_map.Add('D', 'T');
+            pwd_map.Add('E', 'K');
+            pwd_map.Add('F', 'V');
+            pwd_map.Add('G', 'R');
+            pwd_map.Add('H', 'A');
+            pwd_map.Add('I', 'D');
+            pwd_map.Add('J', 'Z');
+            pwd_map.Add('K', 'Q');
+            pwd_map.Add('L', 'U');
+            pwd_map.Add('M', 'H');
+            pwd_map.Add('N', 'X');
+            pwd_map.Add('O', 'E');
+            pwd_map.Add('P', 'C');
+            pwd_map.Add('Q', 'F');
+            pwd_map.Add('R', 'G');
+            pwd_map.Add('S', 'Y');
+            pwd_map.Add('T', 'M');
+            pwd_map.Add('U', 'J');
+            pwd_map.Add('V', 'B');
+            pwd_map.Add('W', 'P');
+            pwd_map.Add('X', 'I');
+            pwd_map.Add('Y', 'O');
+            pwd_map.Add('Z', 'S');
+
+            pwd_map.Add('a', 'w');
+            pwd_map.Add('b', 'n');
+            pwd_map.Add('c', 'l');
+            pwd_map.Add('d', 't');
+            pwd_map.Add('e', 'k');
+            pwd_map.Add('f', 'v');
+            pwd_map.Add('g', 'r');
+            pwd_map.Add('h', 'a');
+            pwd_map.Add('i', 'd');
+            pwd_map.Add('j', 'z');
+            pwd_map.Add('k', 'q');
+            pwd_map.Add('l', 'u');
+            pwd_map.Add('m', 'h');
+            pwd_map.Add('n', 'x');
+            pwd_map.Add('o', 'e');
+            pwd_map.Add('p', 'c');
+            pwd_map.Add('q', 'f');
+            pwd_map.Add('r', 'g');
+            pwd_map.Add('s', 'y');
+            pwd_map.Add('t', 'm');
+            pwd_map.Add('u', 'j');
+            pwd_map.Add('v', 'b');
+            pwd_map.Add('w', 'p');
+            pwd_map.Add('x', 'i');
+            pwd_map.Add('y', 'o');
+            pwd_map.Add('z', 's');
+
+            char[] arrayChars = new char[epc.Length];
+            for (int i = 0; i < epc.Length; ++i)
             {
-                byte[] data = System.Text.Encoding.UTF8.GetBytes(sendData);
-                HttpWebRequest wbRequest = (HttpWebRequest)WebRequest.Create(url);  // 制备web请求
-                wbRequest.Proxy = null;     //现场测试注释掉也可以上传
-                wbRequest.Method = "Get";
-                wbRequest.ContentType = "application/json";
-                wbRequest.ContentLength = data.Length;
-
-                //#region //【1】获得请求流，OK
-                //Stream newStream = wbRequest.GetRequestStream();
-                //newStream.Write(data, 0, data.Length);
-                //newStream.Close();//关闭流
-                //newStream.Dispose();//释放流所占用的资源
-                //#endregion
-
-                #region //【2】将创建Stream流对象的过程写在using当中，会自动的帮助我们释放流所占用的资源。OK
-                using (Stream wStream = wbRequest.GetRequestStream())         //using(){}作为语句，用于定义一个范围，在此范围的末尾将释放对象。
-                {
-                    wStream.Write(data, 0, data.Length);
-                }
-                #endregion
-
-                //获取响应
-                HttpWebResponse wbResponse = (HttpWebResponse)wbRequest.GetResponse();
-                using (Stream responseStream = wbResponse.GetResponseStream())
-                {
-                    using (StreamReader sReader = new StreamReader(responseStream, Encoding.UTF8))      //using(){}作为语句，用于定义一个范围，在此范围的末尾将释放对象。
-                    {
-                        reslut = sReader.ReadToEnd();
-                    }
-                }
+                arrayChars[i] = pwd_map[epc[i]];
             }
-            catch (Exception e)
-            {
-                reslut = e.Message;     //输出捕获到的异常，用OUT关键字输出
-                return -1;              //出现异常，函数的返回值为-1
-            }
-            return 0;
+
+            res = new string(arrayChars);
+
+            return res;
         }
 
+        public static string Get(string Url, int timeOut = 2)
+        {
+            //System.GC.Collect();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+            request.Timeout = timeOut * 1000;
+            request.ReadWriteTimeout = timeOut * 1000;
+            request.Proxy = null;
+            request.KeepAlive = false;
+            request.Method = "GET";
+            request.ContentType = "application/json; charset=UTF-8";
+            request.AutomaticDecompression = DecompressionMethods.GZip;
 
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream myResponseStream = response.GetResponseStream();
+            StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.UTF8);
+            string retString = myStreamReader.ReadToEnd();
+
+            myStreamReader.Close();
+            myResponseStream.Close();
+
+            if (response != null)
+            {
+                response.Close();
+            }
+            if (request != null)
+            {
+                request.Abort();
+            }
+
+            return retString;
+        }
     }
 }
