@@ -17,7 +17,7 @@ namespace UHFReader288MP
 {
     public partial class MainForm : Form
     {
-        const string windowName = "UHFReader288MP";
+        const string windowName = "Dashboard";
 
         [DllImport("User32.dll", EntryPoint = "PostMessage")]
         private static extern int PostMessage(

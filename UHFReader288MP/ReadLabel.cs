@@ -11,12 +11,17 @@ using System.Threading;
 using System.Runtime.InteropServices;
 using UHF;
 using UHFReader288MPDemo;
+using System.Net.Http;
+using System.IO;
+using GroupDocs.Conversion;
+using GroupDocs.Conversion.FileTypes;
+using GroupDocs.Conversion.Options.Convert;
 
 namespace UHFReader288MP
 {
     public partial class ReadLabel : UserControl
     {
-        const string windowName = "UHFReader288MP";
+        const string windowName = "Dashboard";
 
         [DllImport("User32.dll", EntryPoint = "PostMessage")]
         private static extern int PostMessage(
@@ -71,13 +76,9 @@ namespace UHFReader288MP
         {
             this.TagId = res.tag;
             this.TagSize = res.size;
-            this.TagType = res.type;
-            this.TagColor = res.color;
             this.Pic = res.pic;
             this.InMoney = res.in_money;
             this.OutMoney = res.out_money;
-            this.SupplierId = res.supplier_id;
-            this.WarehouseId = res.warehouse_id;
             this.TypeName = res.type_name;
             this.ColorName = res.color_name;
             this.SupplierName = res.supplier_name;
@@ -125,30 +126,6 @@ namespace UHFReader288MP
             }
         }
 
-        private string tagType;
-
-        public string TagType
-        {
-            get { return tagType; }
-            set
-            {
-                tagType = value;
-                this.LB_TypeValue.Text = tagType;
-            }
-        }
-
-        private string tagColor;
-
-        public string TagColor
-        {
-            get { return tagColor; }
-            set
-            {
-                tagColor = value;
-                this.LB_ColorValue.Text = tagColor;
-            }
-        }
-
         private string pic;
 
         public string Pic
@@ -159,11 +136,16 @@ namespace UHFReader288MP
                 pic = value;
                 try
                 {
-                    System.Net.WebRequest webreq = System.Net.WebRequest.Create(pic);
-                    System.Net.WebResponse webres = webreq.GetResponse();
-                    using (System.IO.Stream stream = webres.GetResponseStream())
+                    this.pictureBox.Image = null;
+                    this.pictureBox.WaitOnLoad = false; //设置为异步加载图片
+                    this.pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                    //this.pictureBox.Load(pic); //"http://image.photophoto.cn/nm-7/003/028/0030280465.jpg"
+                    string webpUrl = "./tempWebp.webp";
+                    string jpgUrl = "./tempJpg.jpg";
+
+                    if (HttpHelper.GetImgJpg(webpUrl, jpgUrl, pic))
                     {
-                        pictureBox.Image = Image.FromStream(stream);
+                        this.pictureBox.Image = GetFile(jpgUrl);
                     }
                 }
                 catch (Exception ex)
@@ -171,6 +153,37 @@ namespace UHFReader288MP
                     Log.WriteError(ex.Message);
                 }
             }
+        }
+
+        ///
+        /// 将文件转为内存流
+        ///
+        /// 
+        /// 
+        private MemoryStream ReadFile(string path)
+        {
+            if (!File.Exists(path))
+                return null;
+
+            using (FileStream file = new FileStream(path, FileMode.Open))
+            {
+                byte[] b = new byte[file.Length];
+                file.Read(b, 0, b.Length);
+
+                MemoryStream stream = new MemoryStream(b);
+                return stream;
+            }
+        }
+
+        ///
+        /// 将内存流转为图片
+        ///
+        /// 
+        /// 
+        private Image GetFile(string path)
+        {
+            MemoryStream stream = ReadFile(path);
+            return stream == null ? null : Image.FromStream(stream);
         }
 
         private string inMoney;
@@ -194,30 +207,6 @@ namespace UHFReader288MP
             {
                 outMoney = value;
                 this.LB_OutMoneyValue.Text = outMoney;
-            }
-        }
-
-        private string supplierId;
-
-        public string SupplierId
-        {
-            get { return supplierId; }
-            set
-            {
-                supplierId = value;
-                this.LB_SuypplierIDValue.Text = supplierId;
-            }
-        }
-
-        private string warehouseId;
-
-        public string WarehouseId
-        {
-            get { return warehouseId; }
-            set
-            {
-                warehouseId = value;
-                this.LB_WarehouseIDValue.Text = warehouseId;
             }
         }
 
@@ -265,11 +254,23 @@ namespace UHFReader288MP
             set
             {
                 warehouseName = value;
-                this.LB_WarehouseNameValue.Text = warehouseId;
+                this.LB_WarehouseNameValue.Text = warehouseName;
             }
         }
 
+        public Image GetHttpImage(string url)
+        {
 
+            var client = new HttpClient();
+
+            var uri = new Uri(Uri.EscapeUriString(url));
+            byte[] urlContents = client.GetByteArrayAsync(uri).Result;
+
+            using (var ms = new System.IO.MemoryStream(urlContents))
+            {
+                return Image.FromStream(ms);
+            }
+        }
 
         private int curIndex = 0;
         private List<byte> antList;

@@ -1,7 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using GroupDocs.Conversion;
+using GroupDocs.Conversion.FileTypes;
+using GroupDocs.Conversion.Options.Convert;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -16,13 +20,9 @@ namespace UHFReader288MP
     {
         public string tag;
         public string size;
-        public string type;
-        public string color;
         public string pic;
         public string in_money;
         public string out_money;
-        public string supplier_id;
-        public string warehouse_id;
         public string type_name;
         public string color_name;
         public string supplier_name;
@@ -60,7 +60,7 @@ namespace UHFReader288MP
         {
             result = new ResultStruct();
             string cmd = url + ConvertEPC(epc);
-            cmd = "http://smarts.zhuyy.cn/api/linen/getLinenDetail?epc_id=E2806995000050043565C00E";
+            //cmd = "http://smarts.zhuyy.cn/api/linen/getLinenDetail?epc_id=E2806995000050043565C00E";
             string str;
             try
             {
@@ -83,19 +83,15 @@ namespace UHFReader288MP
                 JObject data = (JObject)JsonConvert.DeserializeObject(jo["data"].ToString());
                 result.tag = data["tag"].ToString();
                 result.size = data["size"].ToString();
-                //result.type = data["type"].ToString();
-                //result.color = data["color"].ToString();
-                result.pic = "http://smarts.zhuyy.cn" + data["pic"].ToString();
+                result.pic = data["pic"].ToString();
                 result.in_money = data["in_money"].ToString();
                 result.out_money = data["out_money"].ToString();
-                //result.supplier_id = data["supplier_id"].ToString();
-                //result.warehouse_id = data["warehouse_id"].ToString();
                 result.type_name = data["type_name"].ToString();
                 result.color_name = data["color_name"].ToString();
                 result.supplier_name = data["supplier_name"].ToString();
                 result.warehouse_name = data["warehouse_name"].ToString();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.WriteError(ex.Message);
                 return false;
@@ -107,7 +103,7 @@ namespace UHFReader288MP
         public static string ConvertEPC(string epc)
         {
             string res = "";
-            
+
             Dictionary<char, char> pwd_map = new Dictionary<char, char>();
             pwd_map.Add('0', '3');
             pwd_map.Add('1', '9');
@@ -183,6 +179,107 @@ namespace UHFReader288MP
             res = new string(arrayChars);
 
             return res;
+        }
+
+        public static Image GetImg(string Url, int timeOut = 2)
+        {
+            //System.GC.Collect();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+            request.Timeout = timeOut * 1000;
+            request.ReadWriteTimeout = timeOut * 1000;
+            request.Proxy = null;
+            request.KeepAlive = false;
+            request.Method = "GET";
+            request.ContentType = "application/json; charset=UTF-8";
+            request.AutomaticDecompression = DecompressionMethods.GZip;
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream myResponseStream = response.GetResponseStream();
+            StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.UTF8);
+            string retString = myStreamReader.ReadToEnd();
+            byte[] imageStream = Convert.FromBase64String(GetImageBase64(retString));
+            using (var streamSub = new MemoryStream(imageStream))
+            {
+                return Image.FromStream(streamSub);
+            }
+
+        }
+
+        public static Stream GetStream(string Url, int timeOut = 2)
+        {
+            //System.GC.Collect();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+            request.Timeout = timeOut * 1000;
+            request.ReadWriteTimeout = timeOut * 1000;
+            request.Proxy = null;
+            request.KeepAlive = false;
+            request.Method = "GET";
+            request.ContentType = "application/json; charset=UTF-8";
+            request.AutomaticDecompression = DecompressionMethods.GZip;
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream myResponseStream = response.GetResponseStream();
+            return myResponseStream;
+        }
+
+        public static bool GetImgJpg(string fileNameWebp, string fileNameJpg, string Url, int timeOut = 2)
+        {
+            //System.GC.Collect();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+            request.Timeout = timeOut * 1000;
+            request.ReadWriteTimeout = timeOut * 1000;
+            request.Proxy = null;
+            request.KeepAlive = false;
+            request.Method = "GET";
+            request.ContentType = "application/json; charset=UTF-8";
+            request.AutomaticDecompression = DecompressionMethods.GZip;
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream myResponseStream = response.GetResponseStream();
+
+            Stream fs = new FileStream(fileNameWebp, FileMode.Create);
+            byte[] bArr = new byte[1024];
+            int size = myResponseStream.Read(bArr, 0, (int)bArr.Length);
+            while (size > 0)
+            {
+                fs.Write(bArr, 0, size);
+                size = myResponseStream.Read(bArr, 0, (int)bArr.Length);
+            }
+            fs.Close();
+            myResponseStream.Close();
+
+            // Convert WebP image to JPG, PNG, BMP or any other format in C#
+            using (Converter converter = new Converter(fileNameWebp))
+            {
+                GroupDocs.Conversion.Options.Convert.ImageConvertOptions options = new ImageConvertOptions
+                { // Set the conversion format to JPG
+                    Format = ImageFileType.Jpg
+                };
+                converter.Convert(fileNameJpg, options);
+            }
+            return true;
+        }
+
+        public static void StreamToFile(Stream stream, string fileName)
+        {
+            // 把 Stream 转换成 byte[]
+            byte[] bytes = new byte[stream.Length];
+            stream.Read(bytes, 0, bytes.Length);
+            // 设置当前流的位置为流的开始
+            stream.Seek(0, SeekOrigin.Begin);
+            // 把 byte[] 写入文件
+            FileStream fs = new FileStream(fileName, FileMode.Create);
+            BinaryWriter bw = new BinaryWriter(fs);
+            bw.Write(bytes);
+            bw.Close();
+            fs.Close();
+        }
+
+
+        private static string GetImageBase64(string strContent)
+        {
+            string[] strSubs = strContent.Split(':', ';', ',');
+            return strSubs[strSubs.Length - 1];
         }
 
         public static string Get(string Url, int timeOut = 2)
