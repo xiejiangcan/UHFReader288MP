@@ -59,16 +59,18 @@ namespace UHFReader288MP
             checkBoxList.Add(this.checkBox2);
             checkBoxList.Add(this.checkBox3);
             checkBoxList.Add(this.checkBox4);
+            this.btnSwitch.FontSize = 24F;
+            this.btnSwitch.FontColor = Color.White;
 
             this.isInput = isInput;
 
             if (isInput)
             {
-                this.btnSwitch.Text = "Start Into";
+                this.btnSwitch.Text = "Start InCheck";
             }
             else
             {
-                this.btnSwitch.Text = "Start Out";
+                this.btnSwitch.Text = "Start OutCheck";
             }
         }
 
@@ -326,7 +328,7 @@ namespace UHFReader288MP
             {
                 IsRuning = false;
                 btnSwitch.Enabled = false;
-                btnSwitch.BackColor = Color.Transparent;
+                btnSwitch.IsChecked = false;
                 btnSwitch.Text = "Stopping";
 
                 IntPtr ptrWnd = IntPtr.Zero;
@@ -349,7 +351,7 @@ namespace UHFReader288MP
             else
             {
                 IsRuning = true;
-                btnSwitch.BackColor = Color.FromArgb(0x14395D);
+                btnSwitch.IsChecked = true;
                 btnSwitch.Text = "Stop";
 
                 IntPtr ptrWnd = IntPtr.Zero;
@@ -375,6 +377,5 @@ namespace UHFReader288MP
         {
 
         }
-        
     }
 }

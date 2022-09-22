@@ -47,6 +47,8 @@
             this.LB_TypeNameValue = new System.Windows.Forms.Label();
             this.LB_ColorNameValue = new System.Windows.Forms.Label();
             this.LB_SupplierNameValue = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.LB_WarehouseNameValue = new System.Windows.Forms.Label();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -54,9 +56,7 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnSwitch = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.LB_WarehouseNameValue = new System.Windows.Forms.Label();
+            this.btnSwitch = new UHFReader288MP.RoundButton();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -304,6 +304,28 @@
             this.LB_SupplierNameValue.Text = "None";
             this.LB_SupplierNameValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(8, 370);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(125, 36);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "label1";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LB_WarehouseNameValue
+            // 
+            this.LB_WarehouseNameValue.AutoSize = true;
+            this.LB_WarehouseNameValue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LB_WarehouseNameValue.Location = new System.Drawing.Point(139, 370);
+            this.LB_WarehouseNameValue.Name = "LB_WarehouseNameValue";
+            this.LB_WarehouseNameValue.Size = new System.Drawing.Size(302, 36);
+            this.LB_WarehouseNameValue.TabIndex = 28;
+            this.LB_WarehouseNameValue.Text = "None";
+            this.LB_WarehouseNameValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // groupBox9
             // 
             this.groupBox9.Controls.Add(this.tableLayoutPanel1);
@@ -391,37 +413,22 @@
             // 
             // btnSwitch
             // 
+            this.btnSwitch.ControlState = UHFReader288MP.ControlState.Normal;
             this.btnSwitch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSwitch.Font = new System.Drawing.Font("宋体", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSwitch.FlatAppearance.BorderSize = 0;
+            this.btnSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSwitch.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSwitch.HoverColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnSwitch.IsChecked = false;
             this.btnSwitch.Location = new System.Drawing.Point(20, 20);
             this.btnSwitch.Name = "btnSwitch";
+            this.btnSwitch.NormalColor = System.Drawing.SystemColors.ButtonShadow;
+            this.btnSwitch.PressedColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnSwitch.Radius = 15;
             this.btnSwitch.Size = new System.Drawing.Size(415, 61);
             this.btnSwitch.TabIndex = 0;
-            this.btnSwitch.Text = "button1";
             this.btnSwitch.UseVisualStyleBackColor = true;
             this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(8, 370);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(125, 36);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "label1";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // LB_WarehouseNameValue
-            // 
-            this.LB_WarehouseNameValue.AutoSize = true;
-            this.LB_WarehouseNameValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LB_WarehouseNameValue.Location = new System.Drawing.Point(139, 370);
-            this.LB_WarehouseNameValue.Name = "LB_WarehouseNameValue";
-            this.LB_WarehouseNameValue.Size = new System.Drawing.Size(302, 36);
-            this.LB_WarehouseNameValue.TabIndex = 28;
-            this.LB_WarehouseNameValue.Text = "None";
-            this.LB_WarehouseNameValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ReadLabel
             // 
@@ -449,7 +456,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnSwitch;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.CheckBox checkBox1;
@@ -475,5 +481,6 @@
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label LB_WarehouseNameValue;
+        private RoundButton btnSwitch;
     }
 }
