@@ -349,7 +349,7 @@ namespace UHFReader288MP
             else
             {
                 IsRuning = true;
-                btnSwitch.BackColor = Color.Indigo;
+                btnSwitch.BackColor = Color.FromArgb(0x14395D);
                 btnSwitch.Text = "Stop";
 
                 IntPtr ptrWnd = IntPtr.Zero;

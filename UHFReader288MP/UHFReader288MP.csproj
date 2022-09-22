@@ -140,6 +140,9 @@
     <Compile Include="ReadLabel.Designer.cs">
       <DependentUpon>ReadLabel.cs</DependentUpon>
     </Compile>
+    <Compile Include="RoundButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="RWDev.cs" />
     <Compile Include="Setting.cs">
       <SubType>UserControl</SubType>

@@ -35,7 +35,6 @@
             this.btn_Log = new System.Windows.Forms.Button();
             this.btnOutput = new System.Windows.Forms.Button();
             this.btnInput = new System.Windows.Forms.Button();
-            this.btnSetting = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,6 +48,10 @@
             this.btnRecount = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.panelCenter = new System.Windows.Forms.Panel();
+            this.btnSetting = new UHFReader288MP.RoundButton();
+            this.roundButton1 = new UHFReader288MP.RoundButton();
+            this.roundButton2 = new UHFReader288MP.RoundButton();
+            this.roundButton3 = new UHFReader288MP.RoundButton();
             this.panel1.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -75,10 +78,13 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.roundButton3);
+            this.panel6.Controls.Add(this.roundButton2);
+            this.panel6.Controls.Add(this.roundButton1);
+            this.panel6.Controls.Add(this.btnSetting);
             this.panel6.Controls.Add(this.btn_Log);
             this.panel6.Controls.Add(this.btnOutput);
             this.panel6.Controls.Add(this.btnInput);
-            this.panel6.Controls.Add(this.btnSetting);
             resources.ApplyResources(this.panel6, "panel6");
             this.panel6.Name = "panel6";
             // 
@@ -102,13 +108,6 @@
             this.btnInput.Name = "btnInput";
             this.btnInput.UseVisualStyleBackColor = true;
             this.btnInput.Click += new System.EventHandler(this.btnInput_Click);
-            // 
-            // btnSetting
-            // 
-            resources.ApplyResources(this.btnSetting, "btnSetting");
-            this.btnSetting.Name = "btnSetting";
-            this.btnSetting.UseVisualStyleBackColor = true;
-            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
             // 
             // panel5
             // 
@@ -195,6 +194,59 @@
             resources.ApplyResources(this.panelCenter, "panelCenter");
             this.panelCenter.Name = "panelCenter";
             // 
+            // btnSetting
+            // 
+            this.btnSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(57)))), ((int)(((byte)(93)))));
+            this.btnSetting.ControlState = UHFReader288MP.ControlState.Normal;
+            resources.ApplyResources(this.btnSetting, "btnSetting");
+            this.btnSetting.FlatAppearance.BorderSize = 0;
+            this.btnSetting.HoverColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSetting.IsChecked = false;
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.NormalColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnSetting.PressedColor = System.Drawing.SystemColors.ButtonShadow;
+            this.btnSetting.Radius = 5;
+            this.btnSetting.UseVisualStyleBackColor = false;
+            // 
+            // roundButton1
+            // 
+            this.roundButton1.ControlState = UHFReader288MP.ControlState.Normal;
+            resources.ApplyResources(this.roundButton1, "roundButton1");
+            this.roundButton1.FlatAppearance.BorderSize = 0;
+            this.roundButton1.HoverColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.roundButton1.IsChecked = false;
+            this.roundButton1.Name = "roundButton1";
+            this.roundButton1.NormalColor = System.Drawing.SystemColors.ButtonFace;
+            this.roundButton1.PressedColor = System.Drawing.SystemColors.ButtonShadow;
+            this.roundButton1.Radius = 5;
+            this.roundButton1.UseVisualStyleBackColor = true;
+            // 
+            // roundButton2
+            // 
+            this.roundButton2.ControlState = UHFReader288MP.ControlState.Normal;
+            resources.ApplyResources(this.roundButton2, "roundButton2");
+            this.roundButton2.FlatAppearance.BorderSize = 0;
+            this.roundButton2.HoverColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.roundButton2.IsChecked = false;
+            this.roundButton2.Name = "roundButton2";
+            this.roundButton2.NormalColor = System.Drawing.SystemColors.ButtonFace;
+            this.roundButton2.PressedColor = System.Drawing.SystemColors.ButtonShadow;
+            this.roundButton2.Radius = 5;
+            this.roundButton2.UseVisualStyleBackColor = true;
+            // 
+            // roundButton3
+            // 
+            this.roundButton3.ControlState = UHFReader288MP.ControlState.Normal;
+            resources.ApplyResources(this.roundButton3, "roundButton3");
+            this.roundButton3.FlatAppearance.BorderSize = 0;
+            this.roundButton3.HoverColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.roundButton3.IsChecked = false;
+            this.roundButton3.Name = "roundButton3";
+            this.roundButton3.NormalColor = System.Drawing.SystemColors.ButtonFace;
+            this.roundButton3.PressedColor = System.Drawing.SystemColors.ButtonShadow;
+            this.roundButton3.Radius = 5;
+            this.roundButton3.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -225,7 +277,6 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button btnOutput;
         private System.Windows.Forms.Button btnInput;
-        private System.Windows.Forms.Button btnSetting;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label2;
@@ -240,6 +291,10 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Panel panelCenter;
         private System.Windows.Forms.Button btn_Log;
+        private RoundButton btnSetting;
+        private RoundButton roundButton3;
+        private RoundButton roundButton2;
+        private RoundButton roundButton1;
     }
 }
 
