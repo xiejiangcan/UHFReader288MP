@@ -147,6 +147,11 @@ namespace UHFReader288MP
                 throw new Exception(errMsg);
             }
             elegateRFIDCallBack = new RFIDCallBack(GetUid);
+
+            this.btnSetting.CheckedColor = Color.FromArgb(0x33, 0xcc, 0xff);
+            this.btnOutput.CheckedColor = Color.FromArgb(0x33, 0xcc, 0xff);
+            this.btnInput.CheckedColor = Color.FromArgb(0x33, 0xcc, 0xff);
+            this.btn_Log.CheckedColor = Color.FromArgb(0x33, 0xcc, 0xff);
         }
 
         ~MainForm()
@@ -557,9 +562,9 @@ namespace UHFReader288MP
             }
             else if (m.Msg == WM_SETPOWER)
             {
-                if (toStopThread == true && !Connect232())
+                if (fIsInventoryScan != true && !Connect232())
                 {
-                    toStopThread = true;
+                    return;
                 }
 
                 string tagInfo = Marshal.PtrToStringAnsi(m.LParam);
@@ -576,15 +581,15 @@ namespace UHFReader288MP
                     WriteLog(mLogView.RtbLog, strLog, 0);
                 }
 
-                if (toStopThread == true)
+                if (fIsInventoryScan != true)
                     RWDev.CloseComPort();
 
             }
             else if (m.Msg == WM_SETREADERADDR)
             {
-                if (toStopThread == true && !Connect232())
+                if (fIsInventoryScan != true && !Connect232())
                 {
-                    toStopThread = true;
+                    return;
                 }
 
                 string tagInfo = Marshal.PtrToStringAnsi(m.LParam);
@@ -601,14 +606,14 @@ namespace UHFReader288MP
                     WriteLog(mLogView.RtbLog, strLog, 0);
                 }
 
-                if (toStopThread == true)
+                if (fIsInventoryScan != true)
                     RWDev.CloseComPort();
             }
             else if (m.Msg == WM_SETREADERID)
             {
-                if (toStopThread == true && !Connect232())
+                if (fIsInventoryScan != true && !Connect232())
                 {
-                    toStopThread = true;
+                    return;
                 }
 
                 string tagInfo = Marshal.PtrToStringAnsi(m.LParam);
@@ -627,14 +632,14 @@ namespace UHFReader288MP
                     WriteLog(mLogView.RtbLog, strLog, 0);
                 }
 
-                if (toStopThread == true)
+                if (fIsInventoryScan != true)
                     RWDev.CloseComPort();
             }
             else if (m.Msg == WM_SETSOUNDSWITCH)
             {
-                if (toStopThread == true && !Connect232())
+                if (fIsInventoryScan != true && !Connect232())
                 {
-                    toStopThread = true;
+                    return;
                 }
 
                 string tagInfo = Marshal.PtrToStringAnsi(m.LParam);
@@ -655,14 +660,14 @@ namespace UHFReader288MP
                     WriteLog(mLogView.RtbLog, strLog, 0);
                 }
 
-                if (toStopThread == true)
+                if (fIsInventoryScan != true)
                     RWDev.CloseComPort();
             }
             else if (m.Msg == WM_SETMAXTIME)
             {
-                if (toStopThread == true && !Connect232())
+                if (fIsInventoryScan != true && !Connect232())
                 {
-                    toStopThread = true;
+                    return;
                 }
 
                 string tagInfo = Marshal.PtrToStringAnsi(m.LParam);
@@ -679,7 +684,7 @@ namespace UHFReader288MP
                     string strLog = "Set maximum instruction response time succeed ";
                     WriteLog(mLogView.RtbLog, strLog, 0);
                 }
-                if(toStopThread == true)
+                if (fIsInventoryScan != true)
                     RWDev.CloseComPort();
             }
             else
@@ -705,7 +710,6 @@ namespace UHFReader288MP
                 if (fIsInventoryScan)
                 {
                     toStopThread = true;//标志，接收数据线程判断stop为true，正常情况下会自动退出线程
-                    mythread.Abort();//若线程无法退出，强制结束
                     fIsInventoryScan = false;
                     mReadInput.IsRuning = false;
                     mReadInput.SetClickButtonEnable(true);
@@ -714,6 +718,7 @@ namespace UHFReader288MP
                     mReadOutput.SetClickButtonEnable(true);
                     mReadOutput.SetButtonText("Start Out");
                     RWDev.CloseComPort();
+                    mythread.Abort();//若线程无法退出，强制结束
                 }
                 fIsInventoryScan = false;
             });
@@ -945,26 +950,56 @@ namespace UHFReader288MP
             this.EpcCounter = 0;
         }
 
+        RoundButton curButton = null;
+
         private void btnSetting_Click(object sender, EventArgs e)
         {
+            if (curButton != null)
+            {
+                curButton.IsChecked = false;
+                curButton.Refresh();
+            }
+            curButton = btnSetting;
+            curButton.IsChecked = true;
             this.panelCenter.Controls.Clear();
             this.panelCenter.Controls.Add(mSetting);
         }
 
         private void btnInput_Click(object sender, EventArgs e)
         {
+            if (curButton != null)
+            {
+                curButton.IsChecked = false;
+                curButton.Refresh();
+            }
+            curButton = btnInput;
+            curButton.IsChecked = true;
             this.panelCenter.Controls.Clear();
             this.panelCenter.Controls.Add(mReadInput);
         }
 
         private void btnOutput_Click(object sender, EventArgs e)
         {
+            if (curButton != null)
+            {
+                curButton.IsChecked = false;
+                curButton.Refresh();
+            }
+            curButton = btnOutput;
+            curButton.IsChecked = true;
             this.panelCenter.Controls.Clear();
             this.panelCenter.Controls.Add(mReadOutput);
         }
 
         private void btn_Log_Click(object sender, EventArgs e)
         {
+            if (curButton != null)
+            {
+                curButton.IsChecked = false;
+                curButton.Refresh();
+            }
+            curButton = btn_Log;
+            curButton.IsChecked = true;
             this.panelCenter.Controls.Clear();
             this.panelCenter.Controls.Add(mLogView);
         }

@@ -20,6 +20,10 @@ namespace UHFReader288MP
         private Color _hoverColor = Color.FromArgb(51, 0, 224);//基颜色
         private Color _normalColor = Color.FromArgb(0, 161, 224);//基颜色
         private Color _pressedColor = Color.FromArgb(51, 161, 0);//基颜色
+        private Color checkedColor = Color.FromArgb(20, 57, 93); //选中颜色
+        private Color fontColor;
+        private float fontSize = 10.5F;
+
         //圆形按钮的半径属性
         [CategoryAttribute("布局"), BrowsableAttribute(true), ReadOnlyAttribute(false)]
         public int Radius
@@ -84,6 +88,28 @@ namespace UHFReader288MP
                 this.Invalidate();
             }
         }
+
+
+        public Color CheckedColor
+        {
+            get { return checkedColor; }
+            set { checkedColor = value; }
+        }
+
+        public float FontSize
+        {
+            get { return fontSize; }
+            set { fontSize = value; }
+        }
+
+
+        public Color FontColor
+        {
+            get { return fontColor; }
+            set { fontColor = value; }
+        }
+
+
         public ControlState ControlState { get; set; }
         protected override void OnMouseEnter(EventArgs e)//鼠标进入时
         {
@@ -121,8 +147,9 @@ namespace UHFReader288MP
 
         public RoundButton()
         {
-            Radius = 5;
+            Radius = 50;
             isChecked = false;
+            this.fontColor = this.ForeColor;
             this.FlatStyle = FlatStyle.Flat;
             this.FlatAppearance.BorderSize = 0;
             this.ControlState = ControlState.Normal;
@@ -183,11 +210,22 @@ namespace UHFReader288MP
                     break;
             }
 
+            Color brushColor;
+            if (isChecked)
+            {
+                baseColor = this.CheckedColor;
+                brushColor = FontColor;
+            }
+            else
+            {
+                brushColor = this.ForeColor;
+            }
+
             using (SolidBrush b = new SolidBrush(baseColor))
             {
                 e.Graphics.FillPath(b, path);
-                Font fo = new Font("宋体", 10.5F);
-                Brush brush = new SolidBrush(this.ForeColor);
+                Font fo = new Font("宋体", fontSize);
+                Brush brush = new SolidBrush(brushColor);
                 StringFormat gs = new StringFormat();
                 gs.Alignment = StringAlignment.Center; //居中
                 gs.LineAlignment = StringAlignment.Center;//垂直居中
