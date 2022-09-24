@@ -148,10 +148,12 @@ namespace UHFReader288MP
             }
             elegateRFIDCallBack = new RFIDCallBack(GetUid);
 
-            this.btnSetting.CheckedColor = Color.FromArgb(0x33, 0xcc, 0xff);
-            this.btnOutput.CheckedColor = Color.FromArgb(0x33, 0xcc, 0xff);
-            this.btnInput.CheckedColor = Color.FromArgb(0x33, 0xcc, 0xff);
-            this.btn_Log.CheckedColor = Color.FromArgb(0x33, 0xcc, 0xff);
+            this.btnSetting.CheckedColor = Color.FromArgb(0x39, 0xA5, 0xD8);
+            this.btnOutput.CheckedColor = Color.FromArgb(0x39, 0xA5, 0xD8);
+            this.btnInput.CheckedColor = Color.FromArgb(0x39, 0xA5, 0xD8);
+            this.btn_Log.CheckedColor = Color.FromArgb(0x39, 0xA5, 0xD8);
+            this.btnInput.IsChecked = true;
+            curButton = this.btnInput;
         }
 
         ~MainForm()
@@ -713,10 +715,10 @@ namespace UHFReader288MP
                     fIsInventoryScan = false;
                     mReadInput.IsRuning = false;
                     mReadInput.SetClickButtonEnable(true);
-                    mReadInput.SetButtonText("Start Into");
+                    mReadInput.SetButtonText("Check-In");
                     mReadOutput.IsRuning = false;
                     mReadOutput.SetClickButtonEnable(true);
-                    mReadOutput.SetButtonText("Start Out");
+                    mReadOutput.SetButtonText("Check-Out");
                     RWDev.CloseComPort();
                     mythread.Abort();//若线程无法退出，强制结束
                 }

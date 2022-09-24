@@ -88,7 +88,7 @@
             this.groupBox3.Size = new System.Drawing.Size(455, 436);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Property";
+            this.groupBox3.Text = "Detail";
             // 
             // tableLayoutPanel2
             // 
@@ -138,7 +138,7 @@
             this.LB_Pic.Name = "LB_Pic";
             this.LB_Pic.Size = new System.Drawing.Size(125, 120);
             this.LB_Pic.TabIndex = 8;
-            this.LB_Pic.Text = "pic";
+            this.LB_Pic.Text = "Picture";
             this.LB_Pic.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LB_Tag
@@ -149,7 +149,7 @@
             this.LB_Tag.Name = "LB_Tag";
             this.LB_Tag.Size = new System.Drawing.Size(125, 35);
             this.LB_Tag.TabIndex = 0;
-            this.LB_Tag.Text = "tag";
+            this.LB_Tag.Text = "Chip ID";
             this.LB_Tag.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LB_Size
@@ -202,7 +202,7 @@
             this.LB_InMoney.Name = "LB_InMoney";
             this.LB_InMoney.Size = new System.Drawing.Size(125, 35);
             this.LB_InMoney.TabIndex = 9;
-            this.LB_InMoney.Text = "in_money";
+            this.LB_InMoney.Text = "Cost";
             this.LB_InMoney.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LB_InMoneyValue
@@ -224,7 +224,7 @@
             this.LB_OutMoney.Name = "LB_OutMoney";
             this.LB_OutMoney.Size = new System.Drawing.Size(125, 35);
             this.LB_OutMoney.TabIndex = 10;
-            this.LB_OutMoney.Text = "out_money";
+            this.LB_OutMoney.Text = "Type";
             this.LB_OutMoney.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LB_OutMoneyValue
@@ -246,7 +246,7 @@
             this.LB_TypeName.Name = "LB_TypeName";
             this.LB_TypeName.Size = new System.Drawing.Size(125, 35);
             this.LB_TypeName.TabIndex = 13;
-            this.LB_TypeName.Text = "type_name";
+            this.LB_TypeName.Text = "Linen";
             this.LB_TypeName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LB_ColorName
@@ -257,7 +257,7 @@
             this.LB_ColorName.Name = "LB_ColorName";
             this.LB_ColorName.Size = new System.Drawing.Size(125, 35);
             this.LB_ColorName.TabIndex = 14;
-            this.LB_ColorName.Text = "color_name";
+            this.LB_ColorName.Text = "Color";
             this.LB_ColorName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LB_SupplierName
@@ -268,7 +268,7 @@
             this.LB_SupplierName.Name = "LB_SupplierName";
             this.LB_SupplierName.Size = new System.Drawing.Size(125, 35);
             this.LB_SupplierName.TabIndex = 15;
-            this.LB_SupplierName.Text = "supplier_name";
+            this.LB_SupplierName.Text = "Vendor";
             this.LB_SupplierName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LB_TypeNameValue
@@ -312,7 +312,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(125, 36);
             this.label1.TabIndex = 27;
-            this.label1.Text = "label1";
+            this.label1.Text = "Warehouse";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LB_WarehouseNameValue
@@ -413,16 +413,19 @@
             // 
             // btnSwitch
             // 
+            this.btnSwitch.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(57)))), ((int)(((byte)(93)))));
             this.btnSwitch.ControlState = UHFReader288MP.ControlState.Normal;
             this.btnSwitch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSwitch.FlatAppearance.BorderSize = 0;
             this.btnSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSwitch.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSwitch.HoverColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnSwitch.FontColor = System.Drawing.SystemColors.ControlText;
+            this.btnSwitch.FontSize = 10.5F;
+            this.btnSwitch.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(131)))), ((int)(((byte)(238)))));
             this.btnSwitch.IsChecked = false;
             this.btnSwitch.Location = new System.Drawing.Point(20, 20);
             this.btnSwitch.Name = "btnSwitch";
-            this.btnSwitch.NormalColor = System.Drawing.SystemColors.ButtonShadow;
+            this.btnSwitch.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
             this.btnSwitch.PressedColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnSwitch.Radius = 15;
             this.btnSwitch.Size = new System.Drawing.Size(415, 61);
@@ -434,6 +437,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Name = "ReadLabel";
             this.Padding = new System.Windows.Forms.Padding(10);
