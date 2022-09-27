@@ -35,11 +35,11 @@
             this.panel11 = new System.Windows.Forms.Panel();
             this.btn_Log = new UHFReader288MP.RoundButton();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.btnOutput = new UHFReader288MP.RoundButton();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.btnInput = new UHFReader288MP.RoundButton();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.btnSetting = new UHFReader288MP.RoundButton();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.btnOutput = new UHFReader288MP.RoundButton();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnInput = new UHFReader288MP.RoundButton();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -124,54 +124,6 @@
             resources.ApplyResources(this.panel10, "panel10");
             this.panel10.Name = "panel10";
             // 
-            // btnOutput
-            // 
-            this.btnOutput.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(57)))), ((int)(((byte)(93)))));
-            this.btnOutput.ControlState = UHFReader288MP.ControlState.Normal;
-            resources.ApplyResources(this.btnOutput, "btnOutput");
-            this.btnOutput.FlatAppearance.BorderSize = 0;
-            this.btnOutput.FontColor = System.Drawing.Color.White;
-            this.btnOutput.FontSize = 24F;
-            this.btnOutput.ForeColor = System.Drawing.Color.White;
-            this.btnOutput.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(165)))), ((int)(((byte)(216)))));
-            this.btnOutput.IsChecked = false;
-            this.btnOutput.Name = "btnOutput";
-            this.btnOutput.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(188)))), ((int)(((byte)(230)))));
-            this.btnOutput.PressedColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnOutput.Radius = 15;
-            this.btnOutput.UseVisualStyleBackColor = true;
-            this.btnOutput.Click += new System.EventHandler(this.btnOutput_Click);
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.btnOutput);
-            resources.ApplyResources(this.panel9, "panel9");
-            this.panel9.Name = "panel9";
-            // 
-            // btnInput
-            // 
-            this.btnInput.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(57)))), ((int)(((byte)(93)))));
-            this.btnInput.ControlState = UHFReader288MP.ControlState.Normal;
-            resources.ApplyResources(this.btnInput, "btnInput");
-            this.btnInput.FlatAppearance.BorderSize = 0;
-            this.btnInput.FontColor = System.Drawing.Color.White;
-            this.btnInput.FontSize = 24F;
-            this.btnInput.ForeColor = System.Drawing.Color.White;
-            this.btnInput.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(165)))), ((int)(((byte)(216)))));
-            this.btnInput.IsChecked = false;
-            this.btnInput.Name = "btnInput";
-            this.btnInput.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(188)))), ((int)(((byte)(230)))));
-            this.btnInput.PressedColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnInput.Radius = 15;
-            this.btnInput.UseVisualStyleBackColor = true;
-            this.btnInput.Click += new System.EventHandler(this.btnInput_Click);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.btnInput);
-            resources.ApplyResources(this.panel3, "panel3");
-            this.panel3.Name = "panel3";
-            // 
             // btnSetting
             // 
             this.btnSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(57)))), ((int)(((byte)(93)))));
@@ -190,6 +142,54 @@
             this.btnSetting.Radius = 15;
             this.btnSetting.UseVisualStyleBackColor = false;
             this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.btnOutput);
+            resources.ApplyResources(this.panel9, "panel9");
+            this.panel9.Name = "panel9";
+            // 
+            // btnOutput
+            // 
+            this.btnOutput.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(57)))), ((int)(((byte)(93)))));
+            this.btnOutput.ControlState = UHFReader288MP.ControlState.Normal;
+            resources.ApplyResources(this.btnOutput, "btnOutput");
+            this.btnOutput.FlatAppearance.BorderSize = 0;
+            this.btnOutput.FontColor = System.Drawing.Color.White;
+            this.btnOutput.FontSize = 24F;
+            this.btnOutput.ForeColor = System.Drawing.Color.White;
+            this.btnOutput.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(165)))), ((int)(((byte)(216)))));
+            this.btnOutput.IsChecked = false;
+            this.btnOutput.Name = "btnOutput";
+            this.btnOutput.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(188)))), ((int)(((byte)(230)))));
+            this.btnOutput.PressedColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnOutput.Radius = 15;
+            this.btnOutput.UseVisualStyleBackColor = true;
+            this.btnOutput.Click += new System.EventHandler(this.btnOutput_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.btnInput);
+            resources.ApplyResources(this.panel3, "panel3");
+            this.panel3.Name = "panel3";
+            // 
+            // btnInput
+            // 
+            this.btnInput.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(57)))), ((int)(((byte)(93)))));
+            this.btnInput.ControlState = UHFReader288MP.ControlState.Normal;
+            resources.ApplyResources(this.btnInput, "btnInput");
+            this.btnInput.FlatAppearance.BorderSize = 0;
+            this.btnInput.FontColor = System.Drawing.Color.White;
+            this.btnInput.FontSize = 24F;
+            this.btnInput.ForeColor = System.Drawing.Color.White;
+            this.btnInput.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(165)))), ((int)(((byte)(216)))));
+            this.btnInput.IsChecked = false;
+            this.btnInput.Name = "btnInput";
+            this.btnInput.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(188)))), ((int)(((byte)(230)))));
+            this.btnInput.PressedColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnInput.Radius = 15;
+            this.btnInput.UseVisualStyleBackColor = true;
+            this.btnInput.Click += new System.EventHandler(this.btnInput_Click);
             // 
             // panel5
             // 

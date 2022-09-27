@@ -942,7 +942,7 @@ namespace UHFReader288MP
             mLogView.Dock = DockStyle.Fill;
 
             this.panelCenter.Controls.Clear();
-            this.panelCenter.Controls.Add(mSetting);
+            this.panelCenter.Controls.Add(mReadInput);
 
             this.btnSetting.Select();
         }
