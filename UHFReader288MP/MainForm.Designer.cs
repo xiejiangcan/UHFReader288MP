@@ -261,6 +261,7 @@
             this.btnRecount.PressedColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnRecount.Radius = 15;
             this.btnRecount.UseVisualStyleBackColor = true;
+            this.btnRecount.Click += new System.EventHandler(this.btnRecount_Click);
             // 
             // panel12
             // 
@@ -283,6 +284,7 @@
             this.btnClear.PressedColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnClear.Radius = 15;
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // panel8
             // 

@@ -1014,7 +1014,8 @@ namespace UHFReader288MP
         private void btnClear_Click(object sender, EventArgs e)
         {
             DataTable dt = dataGridView1.DataSource as DataTable;
-            dt.Clear();
+            if(dt != null)
+                dt.Clear();
         }
 
         private bool Connect232()
