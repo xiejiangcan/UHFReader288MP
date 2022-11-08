@@ -68,6 +68,7 @@
             // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox9);
             this.panel1.Controls.Add(this.panel2);
@@ -75,23 +76,25 @@
             this.panel1.Location = new System.Drawing.Point(10, 10);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(20);
-            this.panel1.Size = new System.Drawing.Size(495, 656);
+            this.panel1.Size = new System.Drawing.Size(495, 664);
             this.panel1.TabIndex = 0;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.tableLayoutPanel2);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox3.Location = new System.Drawing.Point(20, 99);
+            this.groupBox3.MinimumSize = new System.Drawing.Size(0, 360);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(455, 436);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Property";
+            this.groupBox3.Text = "Detail";
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.AutoScroll = true;
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
@@ -115,18 +118,19 @@
             this.tableLayoutPanel2.Controls.Add(this.LB_WarehouseNameValue, 1, 8);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 22);
+            this.tableLayoutPanel2.MinimumSize = new System.Drawing.Size(0, 360);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.Padding = new System.Windows.Forms.Padding(5);
             this.tableLayoutPanel2.RowCount = 9;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.49984F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.49984F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.49984F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.49984F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.49984F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.49984F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.49984F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5011F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(449, 411);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
@@ -138,7 +142,7 @@
             this.LB_Pic.Name = "LB_Pic";
             this.LB_Pic.Size = new System.Drawing.Size(125, 120);
             this.LB_Pic.TabIndex = 8;
-            this.LB_Pic.Text = "pic";
+            this.LB_Pic.Text = "Picture";
             this.LB_Pic.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LB_Tag
@@ -146,10 +150,11 @@
             this.LB_Tag.AutoSize = true;
             this.LB_Tag.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LB_Tag.Location = new System.Drawing.Point(8, 125);
+            this.LB_Tag.MinimumSize = new System.Drawing.Size(0, 30);
             this.LB_Tag.Name = "LB_Tag";
             this.LB_Tag.Size = new System.Drawing.Size(125, 35);
             this.LB_Tag.TabIndex = 0;
-            this.LB_Tag.Text = "tag";
+            this.LB_Tag.Text = "Chip ID";
             this.LB_Tag.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LB_Size
@@ -157,6 +162,7 @@
             this.LB_Size.AutoSize = true;
             this.LB_Size.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LB_Size.Location = new System.Drawing.Point(8, 160);
+            this.LB_Size.MinimumSize = new System.Drawing.Size(0, 30);
             this.LB_Size.Name = "LB_Size";
             this.LB_Size.Size = new System.Drawing.Size(125, 35);
             this.LB_Size.TabIndex = 2;
@@ -168,6 +174,7 @@
             this.LB_SizeValue.AutoSize = true;
             this.LB_SizeValue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LB_SizeValue.Location = new System.Drawing.Point(139, 160);
+            this.LB_SizeValue.MinimumSize = new System.Drawing.Size(0, 30);
             this.LB_SizeValue.Name = "LB_SizeValue";
             this.LB_SizeValue.Size = new System.Drawing.Size(302, 35);
             this.LB_SizeValue.TabIndex = 3;
@@ -179,6 +186,7 @@
             this.LB_TagValue.AutoSize = true;
             this.LB_TagValue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LB_TagValue.Location = new System.Drawing.Point(139, 125);
+            this.LB_TagValue.MinimumSize = new System.Drawing.Size(0, 30);
             this.LB_TagValue.Name = "LB_TagValue";
             this.LB_TagValue.Size = new System.Drawing.Size(302, 35);
             this.LB_TagValue.TabIndex = 1;
@@ -190,7 +198,7 @@
             this.pictureBox.ImageLocation = "";
             this.pictureBox.Location = new System.Drawing.Point(139, 8);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(302, 114);
+            this.pictureBox.Size = new System.Drawing.Size(302, 120);
             this.pictureBox.TabIndex = 26;
             this.pictureBox.TabStop = false;
             // 
@@ -199,10 +207,11 @@
             this.LB_InMoney.AutoSize = true;
             this.LB_InMoney.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LB_InMoney.Location = new System.Drawing.Point(8, 195);
+            this.LB_InMoney.MinimumSize = new System.Drawing.Size(0, 30);
             this.LB_InMoney.Name = "LB_InMoney";
             this.LB_InMoney.Size = new System.Drawing.Size(125, 35);
             this.LB_InMoney.TabIndex = 9;
-            this.LB_InMoney.Text = "in_money";
+            this.LB_InMoney.Text = "Cost";
             this.LB_InMoney.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LB_InMoneyValue
@@ -210,6 +219,7 @@
             this.LB_InMoneyValue.AutoSize = true;
             this.LB_InMoneyValue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LB_InMoneyValue.Location = new System.Drawing.Point(139, 195);
+            this.LB_InMoneyValue.MinimumSize = new System.Drawing.Size(0, 30);
             this.LB_InMoneyValue.Name = "LB_InMoneyValue";
             this.LB_InMoneyValue.Size = new System.Drawing.Size(302, 35);
             this.LB_InMoneyValue.TabIndex = 18;
@@ -221,10 +231,11 @@
             this.LB_OutMoney.AutoSize = true;
             this.LB_OutMoney.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LB_OutMoney.Location = new System.Drawing.Point(8, 230);
+            this.LB_OutMoney.MinimumSize = new System.Drawing.Size(0, 30);
             this.LB_OutMoney.Name = "LB_OutMoney";
             this.LB_OutMoney.Size = new System.Drawing.Size(125, 35);
             this.LB_OutMoney.TabIndex = 10;
-            this.LB_OutMoney.Text = "out_money";
+            this.LB_OutMoney.Text = "Type";
             this.LB_OutMoney.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LB_OutMoneyValue
@@ -232,6 +243,7 @@
             this.LB_OutMoneyValue.AutoSize = true;
             this.LB_OutMoneyValue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LB_OutMoneyValue.Location = new System.Drawing.Point(139, 230);
+            this.LB_OutMoneyValue.MinimumSize = new System.Drawing.Size(0, 30);
             this.LB_OutMoneyValue.Name = "LB_OutMoneyValue";
             this.LB_OutMoneyValue.Size = new System.Drawing.Size(302, 35);
             this.LB_OutMoneyValue.TabIndex = 19;
@@ -243,10 +255,11 @@
             this.LB_TypeName.AutoSize = true;
             this.LB_TypeName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LB_TypeName.Location = new System.Drawing.Point(8, 265);
+            this.LB_TypeName.MinimumSize = new System.Drawing.Size(0, 30);
             this.LB_TypeName.Name = "LB_TypeName";
             this.LB_TypeName.Size = new System.Drawing.Size(125, 35);
             this.LB_TypeName.TabIndex = 13;
-            this.LB_TypeName.Text = "type_name";
+            this.LB_TypeName.Text = "Linen";
             this.LB_TypeName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LB_ColorName
@@ -254,10 +267,11 @@
             this.LB_ColorName.AutoSize = true;
             this.LB_ColorName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LB_ColorName.Location = new System.Drawing.Point(8, 300);
+            this.LB_ColorName.MinimumSize = new System.Drawing.Size(0, 30);
             this.LB_ColorName.Name = "LB_ColorName";
             this.LB_ColorName.Size = new System.Drawing.Size(125, 35);
             this.LB_ColorName.TabIndex = 14;
-            this.LB_ColorName.Text = "color_name";
+            this.LB_ColorName.Text = "Color";
             this.LB_ColorName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LB_SupplierName
@@ -265,10 +279,11 @@
             this.LB_SupplierName.AutoSize = true;
             this.LB_SupplierName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LB_SupplierName.Location = new System.Drawing.Point(8, 335);
+            this.LB_SupplierName.MinimumSize = new System.Drawing.Size(0, 30);
             this.LB_SupplierName.Name = "LB_SupplierName";
             this.LB_SupplierName.Size = new System.Drawing.Size(125, 35);
             this.LB_SupplierName.TabIndex = 15;
-            this.LB_SupplierName.Text = "supplier_name";
+            this.LB_SupplierName.Text = "Vendor";
             this.LB_SupplierName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LB_TypeNameValue
@@ -276,6 +291,7 @@
             this.LB_TypeNameValue.AutoSize = true;
             this.LB_TypeNameValue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LB_TypeNameValue.Location = new System.Drawing.Point(139, 265);
+            this.LB_TypeNameValue.MinimumSize = new System.Drawing.Size(0, 30);
             this.LB_TypeNameValue.Name = "LB_TypeNameValue";
             this.LB_TypeNameValue.Size = new System.Drawing.Size(302, 35);
             this.LB_TypeNameValue.TabIndex = 22;
@@ -287,6 +303,7 @@
             this.LB_ColorNameValue.AutoSize = true;
             this.LB_ColorNameValue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LB_ColorNameValue.Location = new System.Drawing.Point(139, 300);
+            this.LB_ColorNameValue.MinimumSize = new System.Drawing.Size(0, 30);
             this.LB_ColorNameValue.Name = "LB_ColorNameValue";
             this.LB_ColorNameValue.Size = new System.Drawing.Size(302, 35);
             this.LB_ColorNameValue.TabIndex = 23;
@@ -298,6 +315,7 @@
             this.LB_SupplierNameValue.AutoSize = true;
             this.LB_SupplierNameValue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LB_SupplierNameValue.Location = new System.Drawing.Point(139, 335);
+            this.LB_SupplierNameValue.MinimumSize = new System.Drawing.Size(0, 30);
             this.LB_SupplierNameValue.Name = "LB_SupplierNameValue";
             this.LB_SupplierNameValue.Size = new System.Drawing.Size(302, 35);
             this.LB_SupplierNameValue.TabIndex = 24;
@@ -309,10 +327,11 @@
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(8, 370);
+            this.label1.MinimumSize = new System.Drawing.Size(0, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(125, 36);
             this.label1.TabIndex = 27;
-            this.label1.Text = "label1";
+            this.label1.Text = "Warehouse";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LB_WarehouseNameValue
@@ -320,6 +339,7 @@
             this.LB_WarehouseNameValue.AutoSize = true;
             this.LB_WarehouseNameValue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LB_WarehouseNameValue.Location = new System.Drawing.Point(139, 370);
+            this.LB_WarehouseNameValue.MinimumSize = new System.Drawing.Size(0, 30);
             this.LB_WarehouseNameValue.Name = "LB_WarehouseNameValue";
             this.LB_WarehouseNameValue.Size = new System.Drawing.Size(302, 36);
             this.LB_WarehouseNameValue.TabIndex = 28;
@@ -405,7 +425,7 @@
             // 
             this.panel2.Controls.Add(this.btnSwitch);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(20, 535);
+            this.panel2.Location = new System.Drawing.Point(20, 543);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(20);
             this.panel2.Size = new System.Drawing.Size(455, 101);
@@ -413,16 +433,19 @@
             // 
             // btnSwitch
             // 
+            this.btnSwitch.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(57)))), ((int)(((byte)(93)))));
             this.btnSwitch.ControlState = UHFReader288MP.ControlState.Normal;
             this.btnSwitch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSwitch.FlatAppearance.BorderSize = 0;
             this.btnSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSwitch.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSwitch.HoverColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnSwitch.FontColor = System.Drawing.SystemColors.ControlText;
+            this.btnSwitch.FontSize = 10.5F;
+            this.btnSwitch.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(131)))), ((int)(((byte)(238)))));
             this.btnSwitch.IsChecked = false;
             this.btnSwitch.Location = new System.Drawing.Point(20, 20);
             this.btnSwitch.Name = "btnSwitch";
-            this.btnSwitch.NormalColor = System.Drawing.SystemColors.ButtonShadow;
+            this.btnSwitch.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
             this.btnSwitch.PressedColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnSwitch.Radius = 15;
             this.btnSwitch.Size = new System.Drawing.Size(415, 61);
@@ -434,10 +457,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panel1);
             this.Name = "ReadLabel";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(515, 676);
+            this.Size = new System.Drawing.Size(515, 684);
             this.panel1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);

@@ -61,16 +61,17 @@ namespace UHFReader288MP
             checkBoxList.Add(this.checkBox4);
             this.btnSwitch.FontSize = 24F;
             this.btnSwitch.FontColor = Color.White;
+            this.btnSwitch.CheckedColor = Color.FromArgb(0x39, 0xA5, 0xD8);
 
             this.isInput = isInput;
 
             if (isInput)
             {
-                this.btnSwitch.Text = "Start InCheck";
+                this.btnSwitch.Text = "Check-In";
             }
             else
             {
-                this.btnSwitch.Text = "Start OutCheck";
+                this.btnSwitch.Text = "Check-Out";
             }
         }
 

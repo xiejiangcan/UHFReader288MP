@@ -16,9 +16,9 @@ namespace UHFReader288MP
 
         private int radius;//半径 
         private bool isChecked;
-        private Color _baseColor = Color.FromArgb(51, 161, 224);//基颜色
-        private Color _hoverColor = Color.FromArgb(51, 0, 224);//基颜色
-        private Color _normalColor = Color.FromArgb(0, 161, 224);//基颜色
+        private Color _borderColor = Color.FromArgb(0x84, 0xC5, 0xED);//基颜色
+        private Color _hoverColor = Color.FromArgb(0x30, 0x83, 0xEE);//基颜色 #3083EE
+        private Color _normalColor = Color.FromArgb(0xE9, 0xE9, 0xE9);//基颜色 #E9E9E9
         private Color _pressedColor = Color.FromArgb(51, 161, 0);//基颜色
         private Color checkedColor = Color.FromArgb(20, 57, 93); //选中颜色
         private Color fontColor;
@@ -46,6 +46,20 @@ namespace UHFReader288MP
         {
             get { return isChecked; }
             set { isChecked = value; }
+        }
+
+        [DefaultValue(typeof(Color), "0x84, 0xC5, 0xED")]
+        public Color BorderColor
+        {
+            get
+            {
+                return this._borderColor;
+            }
+            set
+            {
+                this._borderColor = value;
+                this.Invalidate();
+            }
         }
 
         [DefaultValue(typeof(Color), "51, 161, 224")]
@@ -182,7 +196,7 @@ namespace UHFReader288MP
             base.OnPaintBackground(e);
             e.Graphics.SmoothingMode = SmoothingMode.HighQuality;
             e.Graphics.CompositingQuality = CompositingQuality.HighQuality;
-
+            //e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
             e.Graphics.InterpolationMode = InterpolationMode.HighQualityBilinear;
 
             Rectangle rect = new Rectangle(0, 0, this.Width, this.Height);
@@ -191,7 +205,7 @@ namespace UHFReader288MP
             this.Region = new Region(path);
 
             Color baseColor;
-            //Color borderColor;
+            Color borderColor = this._borderColor;//Color.FromArgb(200, 255, 255, 255); ;
             //Color innerBorderColor = this._baseColor;//Color.FromArgb(200, 255, 255, 255); ;
 
             switch (ControlState)
@@ -230,7 +244,9 @@ namespace UHFReader288MP
                 gs.Alignment = StringAlignment.Center; //居中
                 gs.LineAlignment = StringAlignment.Center;//垂直居中
                 e.Graphics.DrawString(this.Text, fo, brush, rect, gs);
-                //  e.Graphics.DrawPath(p, path);
+                Pen p = new Pen(borderColor);
+                p.Width = 3;
+                e.Graphics.DrawPath(p, path);
             }
         }
         private GraphicsPath GetRoundedRectPath(Rectangle rect, int radius)
